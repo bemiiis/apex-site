@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="O-1A, EB-1A, EB-2 NIW – they sound similar and the criteria overlap. Here's how to tell which path is right for you.">
+  <title>O-1A vs EB-1A vs EB-2 NIW – Which One Is Right for You? – Apex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .article-wrap {
+      max-width: 680px;
+      margin-inline: auto;
+      margin-top: calc(var(--nav-h) + 80px);
+      margin-bottom: 80px;
+      padding: 0 48px;
+      border: 1px solid var(--gray-2);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--gray-2);
+      margin: 0 -48px;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      padding: 20px 0;
+      transition: color .15s;
+    }
+    .article-back:hover { color: var(--black); }
+    .article-back svg { flex-shrink: 0; }
+
+    .article-meta {
+      display: flex;
+      align-items: stretch;
+      margin: 0 -48px;
+      border-top: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .article-meta__cell {
+      padding: 20px 24px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--black);
+      border-left: 1px solid var(--gray-2);
+    }
+    .article-meta__cell:first-child { border-left: none; }
+    .article-meta__cell--right {
+      margin-left: auto;
+      border-left: 1px solid var(--gray-2);
+    }
+
+    .article-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      padding-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.7;
+      padding-bottom: 40px;
+      margin-bottom: 0;
+    }
+
+    .article-toc {
+      background: none;
+      padding: 40px 0;
+      margin-bottom: 0;
+    }
+    .article-toc__label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .article-toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .article-toc li::before { display: none; }
+    .article-toc a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .article-toc a:hover { color: var(--blue); }
+
+    .article-body {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .article-section { scroll-margin-top: calc(var(--nav-h) + 32px); }
+
+    .article-section__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .article-section p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .article-section p:last-child { margin-bottom: 0; }
+    .article-section p strong { font-weight: 500; }
+
+    .article-section ul,
+    .article-section ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-section ul li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 16px;
+      position: relative;
+    }
+    .article-section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--black);
+    }
+
+    .article-section ol { counter-reset: ol; }
+    .article-section ol li {
+      counter-increment: ol;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 28px;
+      position: relative;
+    }
+    .article-section ol li::before {
+      content: counter(ol) '.';
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .article-section ol li strong,
+    .article-section ul li strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .article-cta {
+      padding: 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .article-cta__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+    .article-cta__sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 680px) {
+      .article-wrap { padding: 0 28px; margin-top: calc(var(--nav-h) + 40px); margin-bottom: 40px; }
+      .article-divider { margin: 0 -28px; }
+      .article-meta { margin: 0 -28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
+      </a>
+      <nav class="nav__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="nav__actions">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
+      </div>
+      <button class="nav__burger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="mobile-menu__bottom">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="article-wrap">
+
+      <a href="resources.html" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All articles
+      </a>
+
+      <div class="article-meta">
+        <div class="article-meta__cell">O-1A · EB-1A · EB-2 NIW</div>
+        <div class="article-meta__cell">Jun'26</div>
+        <div class="article-meta__cell article-meta__cell--right">5 min</div>
+      </div>
+
+      <h1 class="article-title">O-1A vs EB-1A vs EB-2 NIW – Which One Is Right for You?</h1>
+
+      <p class="article-lead">If you've been researching US immigration options for talented people, you've probably encountered all three of these. They sound similar. The criteria overlap. And the internet is full of articles that explain each one in isolation but don't tell you how to choose. This article is about the choice.</p>
+
+      <hr class="article-divider">
+
+      <div class="article-toc">
+        <div class="article-toc__label">In this article</div>
+        <ol>
+          <li><a href="#difference">The key difference between them</a></li>
+          <li><a href="#o1a">Who should consider O-1A</a></li>
+          <li><a href="#eb1a">Who should consider EB-1A</a></li>
+          <li><a href="#niw">Who should consider EB-2 NIW</a></li>
+          <li><a href="#more-than-one">Can you pursue more than one?</a></li>
+          <li><a href="#decide">How to decide</a></li>
+        </ol>
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-body">
+
+        <div class="article-section" id="difference">
+          <h2 class="article-section__title">The key difference between them</h2>
+          <p>Before comparing them, one distinction matters above everything else: O-1A is a visa. EB-1A and EB-2 NIW are green cards.</p>
+          <p>A visa lets you live and work in the US temporarily. A green card is permanent residency – you can stay, work anywhere, and eventually apply for citizenship.</p>
+          <p>This means O-1A and the other two aren't really competing options. They serve different purposes and often work together. The real question is: which green card path makes more sense for you – EB-1A or EB-2 NIW – and do you need O-1A as a bridge to get there?</p>
+        </div>
+
+        <div class="article-section" id="o1a">
+          <h2 class="article-section__title">Who should consider O-1A</h2>
+          <p>O-1A makes sense if you need to be in the US now – or soon – and you're not yet ready to file for a green card.</p>
+          <p>It's the right starting point if you have a job opportunity, a company you're building, or clients you want to work with in the US, and you need a legal status to do that while your longer-term path develops. It's also the right move if your evidence base is strong enough to qualify now but you want more time to build the case for a green card.</p>
+          <p>O-1A is also genuinely useful as a standalone visa for people who aren't sure yet whether they want to stay permanently. You can live and work in the US, see how it goes, and make the green card decision later.</p>
+          <p>The main limitation: it's temporary. You renew it every year, and it doesn't lead to a green card on its own. At some point, if you want to stay permanently, you'll need to file separately.</p>
+        </div>
+
+        <div class="article-section" id="eb1a">
+          <h2 class="article-section__title">Who should consider EB-1A</h2>
+          <p>EB-1A is the right path if your goal is permanent residency and your profile is built around demonstrable excellence – a strong track record of recognition, impact, and achievement in your field.</p>
+          <p>The question EB-1A asks is: are you among the small percentage who have risen to the top of your field? It's a high bar, but it's not limited to famous people. A designer with significant industry recognition, an engineer whose work has been widely adopted, a researcher whose findings have influenced their field – these are EB-1A profiles.</p>
+          <p>EB-1A tends to be a stronger fit if your evidence is concentrated around personal achievement – awards, press coverage, high salary, critical roles in respected organizations. The case is about you and what you've accomplished.</p>
+          <p>One practical advantage: for most countries, there's no backlog. Once your I-140 is approved, you can move forward quickly.</p>
+        </div>
+
+        <div class="article-section" id="niw">
+          <h2 class="article-section__title">Who should consider EB-2 NIW</h2>
+          <p>EB-2 NIW is the right path if your goal is permanent residency and your profile is built around the significance of your work – not just your personal achievements, but the broader impact of what you're doing.</p>
+          <p>The question NIW asks is different from EB-1A: is your work important enough to the United States that the normal requirement of an employer sponsor should be waived? This framing opens the door for people whose profile is less about traditional markers of achievement and more about the value of what they're building or researching.</p>
+          <p>NIW tends to be a stronger fit for founders working on technology or products with broad societal impact, researchers in fields with clear public benefit, educators, healthcare professionals, and people whose work is inherently independent – hard to attach to a single employer.</p>
+          <p>It's also worth considering if you're earlier in your career and your individual recognition isn't yet at EB-1A level, but the work you're doing clearly matters beyond your immediate organization.</p>
+        </div>
+
+        <div class="article-section" id="more-than-one">
+          <h2 class="article-section__title">Can you pursue more than one?</h2>
+          <p>Yes – and many people do.</p>
+          <p>O-1A and a green card petition are entirely compatible. You can hold O-1A status while your I-140 is pending. In fact, this is one of the most common paths: get O-1A to start working in the US, file for EB-1A or NIW in parallel or shortly after, and transition to a green card once it's approved.</p>
+          <p>Filing for both EB-1A and EB-2 NIW simultaneously is also possible. If your profile could support either argument, filing both hedges your bets – one may be approved faster, or one officer may find one framing more compelling than the other. Your attorney can advise whether this makes sense for your specific case.</p>
+        </div>
+
+        <div class="article-section" id="decide">
+          <h2 class="article-section__title">How to decide</h2>
+          <p>Start with these three questions:</p>
+          <ol>
+            <li><strong>Do you need to be in the US soon?</strong> If yes, O-1A is your immediate priority. Green card planning can happen in parallel.</li>
+            <li><strong>Is your profile built around personal achievement or the impact of your work?</strong> Achievement-focused profiles tend toward EB-1A. Work-impact-focused profiles tend toward NIW. Many people have elements of both – in which case, either path may work, and the framing of your case matters.</li>
+            <li><strong>How strong is your evidence right now?</strong> EB-1A has a higher bar for individual recognition. If you're not quite there yet, NIW may be the more accessible green card path – or you may need to spend time building your case before filing either.</li>
+          </ol>
+          <p>If you're not sure where you fall, the most useful next step is an honest assessment of your evidence against the criteria for each category. That's exactly what we do at Apex.</p>
+        </div>
+
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-cta">
+        <div class="article-cta__title">Not sure which path fits you?</div>
+        <div class="article-cta__sub">Book a free 30-minute call. We'll look at your profile honestly and tell you where you stand – no pitch, no pressure.</div>
+        <div>
+          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Book a free call</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
+        </a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Navigation</span>
+        <a href="index.html#visas">Visas</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Social Media</span>
+        <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Legal</span>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:contact@runapex.co">contact@runapex.co</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Apex. All rights reserved.</span>
+      <span>Made with love</span>
+    </div>
+    <div class="container footer__disclaimer">
+      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The O-1 visa is for people with extraordinary ability. Here's what it means, who qualifies, and how it works in practice.">
+  <title>What is the O-1 visa? – Apex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .article-wrap {
+      max-width: 680px;
+      margin-inline: auto;
+      margin-top: calc(var(--nav-h) + 80px);
+      margin-bottom: 80px;
+      padding: 0 48px;
+      border: 1px solid var(--gray-2);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--gray-2);
+      margin: 0 -48px;
+    }
+
+    /* ── META ── */
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      padding: 20px 0;
+      transition: color .15s;
+    }
+    .article-back:hover { color: var(--black); }
+    .article-back svg { flex-shrink: 0; }
+
+    .article-meta {
+      display: flex;
+      align-items: stretch;
+      margin: 0 -48px;
+      border-top: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .article-meta__cell {
+      padding: 20px 24px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--black);
+      border-left: 1px solid var(--gray-2);
+    }
+    .article-meta__cell:first-child {
+      border-left: none;
+    }
+    .article-meta__cell--right {
+      margin-left: auto;
+      border-left: 1px solid var(--gray-2);
+    }
+
+    /* ── HEADING ── */
+    .article-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      padding-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.7;
+      padding-bottom: 40px;
+      margin-bottom: 0;
+    }
+
+    /* ── TOC ── */
+    .article-toc {
+      background: none;
+      padding: 40px 0;
+      margin-bottom: 0;
+    }
+    .article-toc__label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .article-toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .article-toc li::before {
+      display: none;
+    }
+    .article-toc a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .article-toc a:hover { color: var(--blue); }
+
+    /* ── BODY ── */
+    .article-body {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .article-section { scroll-margin-top: calc(var(--nav-h) + 32px); }
+
+    .article-section__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .article-section p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .article-section p:last-child { margin-bottom: 0; }
+
+    .article-section ul,
+    .article-section ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-section ul li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 16px;
+      position: relative;
+    }
+    .article-section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--black);
+    }
+
+    .article-section ol {
+      counter-reset: ol;
+    }
+    .article-section ol li {
+      counter-increment: ol;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 28px;
+      position: relative;
+    }
+    .article-section ol li::before {
+      content: counter(ol) '.';
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .article-section ol li strong,
+    .article-section ul li strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* ── FAQ ── */
+    .article-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .article-faq__item { }
+    .article-faq__q {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .article-faq__a {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--black);
+    }
+
+    /* ── CTA ── */
+    .article-cta {
+      padding: 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .article-cta__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+    .article-cta__sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+
+    @media (max-width: 680px) {
+      .article-wrap { padding: 0 28px; margin-top: calc(var(--nav-h) + 40px); margin-bottom: 40px; }
+      .article-divider { margin: 0 -28px; }
+      .article-meta { margin: 0 -28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
+      </a>
+      <nav class="nav__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="nav__actions">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
+      </div>
+      <button class="nav__burger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="mobile-menu__bottom">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="article-wrap">
+
+      <a href="resources.html" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All articles
+      </a>
+
+      <div class="article-meta">
+        <div class="article-meta__cell">O-1A</div>
+        <div class="article-meta__cell">Jun'26</div>
+        <div class="article-meta__cell article-meta__cell--right">4 min</div>
+      </div>
+
+      <h1 class="article-title">What is the O-1 visa?</h1>
+
+      <p class="article-lead">There's a common misconception that the O-1 is only for Nobel Prize winners and Hollywood stars. It's not. Designers, engineers, founders, researchers, marketers, and product managers get O-1 visas – people who are genuinely great at what they do and can show it.</p>
+
+      <hr class="article-divider">
+
+      <div class="article-toc">
+        <div class="article-toc__label">In this article</div>
+        <ol>
+          <li><a href="#what-is">What is the O-1 visa</a></li>
+          <li><a href="#who">Who can get an O-1A</a></li>
+          <li><a href="#practice">How it works in practice</a></li>
+          <li><a href="#duration">How long the visa lasts</a></li>
+          <li><a href="#vs-h1b">Why O-1 and not H-1B</a></li>
+          <li><a href="#faq">Frequently asked questions</a></li>
+        </ol>
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-body">
+
+        <div class="article-section" id="what-is">
+          <h2 class="article-section__title">What is the O-1 visa</h2>
+          <p>The O-1 is a work visa for people with extraordinary ability. It lets you live and work in the US legally, and it doesn't tie you to a single employer the way an H-1B does.</p>
+          <p>The visa comes in two types:</p>
+          <ul>
+            <li><strong>O-1A</strong> – for people working in business, science, education, or athletics</li>
+            <li><strong>O-1B</strong> – for people working in the arts, film, or television</li>
+          </ul>
+          <p>This article is about O-1A – the one most relevant to founders, engineers, designers, and researchers.</p>
+        </div>
+
+        <div class="article-section" id="who">
+          <h2 class="article-section__title">Who can get an O-1A</h2>
+          <p>USCIS – the US immigration authority – evaluates your case against eight criteria. To qualify, you need to meet at least three of them.</p>
+          <p>Here's what they actually mean in plain language:</p>
+          <ol>
+            <li><strong>Awards and prizes</strong> – have you received recognition in your field? It doesn't have to be global. Industry awards, competition wins, and grants all count.</li>
+            <li><strong>Membership in professional organizations</strong> – do you belong to associations that don't let just anyone in, but require demonstrated expertise or achievement?</li>
+            <li><strong>Press coverage</strong> – has your work been written about in trade publications, blogs, or podcasts?</li>
+            <li><strong>Judging the work of others</strong> – have you evaluated other people's work? This includes hackathon juries, peer review of academic papers, or mentorship on professional programs.</li>
+            <li><strong>Original contributions of major significance</strong> – is there something you've built, introduced, or changed in your industry?</li>
+            <li><strong>Scholarly articles</strong> – have you written in professional publications or platforms with a real audience?</li>
+            <li><strong>Critical role in a distinguished organization</strong> – have you held a key position in a company that carries weight in your industry?</li>
+            <li><strong>High remuneration</strong> – do you earn significantly more than most people in your field?</li>
+          </ol>
+          <p>The most important thing to understand: USCIS looks at the full picture. This isn't a checklist where every box needs to be ticked perfectly. It's a story – one that shows you're among the best at what you do.</p>
+        </div>
+
+        <div class="article-section" id="practice">
+          <h2 class="article-section__title">How it works in practice</h2>
+          <p>You don't apply for an O-1 on your own. The visa is filed through a petition submitted either by your employer or by an agent – a person or company acting on your behalf.</p>
+          <p>The process looks roughly like this: first, you build your evidence – expert recommendation letters, press coverage, salary data, project documentation. Then an immigration attorney or consultant drafts the petition and submits it to USCIS. Standard processing takes 2 to 4 months. With premium processing, you get a decision within 15 business days.</p>
+        </div>
+
+        <div class="article-section" id="duration">
+          <h2 class="article-section__title">How long the visa lasts</h2>
+          <p>The O-1 is issued for up to 3 years and can be renewed an unlimited number of times – one year at a time. There's no ceiling on how long you can hold it, as long as you continue working in your field.</p>
+        </div>
+
+        <div class="article-section" id="vs-h1b">
+          <h2 class="article-section__title">Why O-1 and not H-1B</h2>
+          <p>The H-1B is the most well-known US work visa. But it has a major downside: an annual lottery. Every year, hundreds of thousands of people apply, and only a fraction are selected at random. The odds aren't great, and even if you're selected, you may wait years before you can actually start.</p>
+          <p>The O-1 is not a lottery. If your case is strong, you get the visa. No randomness involved.</p>
+          <p>Another advantage: the O-1 doesn't lock you into one employer. With the right agent agreement, you can work with multiple companies at the same time.</p>
+        </div>
+
+        <div class="article-section" id="faq">
+          <h2 class="article-section__title">Frequently asked questions</h2>
+          <div class="article-faq">
+            <div class="article-faq__item">
+              <div class="article-faq__q">Do I need to be famous?</div>
+              <div class="article-faq__a">No. You need to be a recognized expert in your field – that's not the same thing. You might have 500 LinkedIn followers, but if you've spoken at an industry conference and been cited by peers, that already counts as evidence.</div>
+            </div>
+            <div class="article-faq__item">
+              <div class="article-faq__q">Do I need a job offer from a US company?</div>
+              <div class="article-faq__a">Technically, you need a petitioner. But that doesn't have to be an employer. An agent can file on your behalf, and you can work with multiple clients.</div>
+            </div>
+            <div class="article-faq__item">
+              <div class="article-faq__q">Can I move to a green card from O-1?</div>
+              <div class="article-faq__a">Yes. O-1 and a green card are different statuses, but they're compatible. Many people start with O-1 and later transition to EB-1A or EB-2 NIW – more on those in the next article.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-cta">
+        <div class="article-cta__title">Think you might qualify?</div>
+        <div class="article-cta__sub">Book a free 30-minute call. We'll look at your background honestly and tell you where you stand – no pitch, no pressure.</div>
+        <div>
+          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Book a free call</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
+        </a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Navigation</span>
+        <a href="index.html#visas">Visas</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Social Media</span>
+        <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Legal</span>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:contact@runapex.co">contact@runapex.co</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Apex. All rights reserved.</span>
+      <span>Made with love</span>
+    </div>
+    <div class="container footer__disclaimer">
+      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

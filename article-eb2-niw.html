@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EB-2 NIW lets you apply for a US green card on your own – no employer sponsor, no PERM. Here's how it works and who qualifies.">
+  <title>What is the EB-2 NIW? – Apex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .article-wrap {
+      max-width: 680px;
+      margin-inline: auto;
+      margin-top: calc(var(--nav-h) + 80px);
+      margin-bottom: 80px;
+      padding: 0 48px;
+      border: 1px solid var(--gray-2);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--gray-2);
+      margin: 0 -48px;
+    }
+
+    /* ── META ── */
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      padding: 20px 0;
+      transition: color .15s;
+    }
+    .article-back:hover { color: var(--black); }
+    .article-back svg { flex-shrink: 0; }
+
+    .article-meta {
+      display: flex;
+      align-items: stretch;
+      margin: 0 -48px;
+      border-top: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .article-meta__cell {
+      padding: 20px 24px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--black);
+      border-left: 1px solid var(--gray-2);
+    }
+    .article-meta__cell:first-child { border-left: none; }
+    .article-meta__cell--right {
+      margin-left: auto;
+      border-left: 1px solid var(--gray-2);
+    }
+
+    /* ── HEADING ── */
+    .article-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      padding-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.7;
+      padding-bottom: 40px;
+      margin-bottom: 0;
+    }
+
+    /* ── TOC ── */
+    .article-toc {
+      background: none;
+      padding: 40px 0;
+      margin-bottom: 0;
+    }
+    .article-toc__label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .article-toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .article-toc li::before { display: none; }
+    .article-toc a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .article-toc a:hover { color: var(--blue); }
+
+    /* ── BODY ── */
+    .article-body {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .article-section { scroll-margin-top: calc(var(--nav-h) + 32px); }
+
+    .article-section__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .article-section p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .article-section p:last-child { margin-bottom: 0; }
+    .article-section p strong { font-weight: 500; }
+
+    .article-section ul,
+    .article-section ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-section ul li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 16px;
+      position: relative;
+    }
+    .article-section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--black);
+    }
+
+    .article-section ol { counter-reset: ol; }
+    .article-section ol li {
+      counter-increment: ol;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 28px;
+      position: relative;
+    }
+    .article-section ol li::before {
+      content: counter(ol) '.';
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .article-section ol li strong,
+    .article-section ul li strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* ── FAQ ── */
+    .article-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .article-faq__q {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .article-faq__a {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--black);
+    }
+
+    /* ── CTA ── */
+    .article-cta {
+      padding: 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .article-cta__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+    .article-cta__sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+
+    @media (max-width: 680px) {
+      .article-wrap { padding: 0 28px; margin-top: calc(var(--nav-h) + 40px); margin-bottom: 40px; }
+      .article-divider { margin: 0 -28px; }
+      .article-meta { margin: 0 -28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
+      </a>
+      <nav class="nav__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="nav__actions">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
+      </div>
+      <button class="nav__burger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="mobile-menu__bottom">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="article-wrap">
+
+      <a href="resources.html" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All articles
+      </a>
+
+      <div class="article-meta">
+        <div class="article-meta__cell">EB-2 NIW</div>
+        <div class="article-meta__cell">Jun'26</div>
+        <div class="article-meta__cell article-meta__cell--right">5 min</div>
+      </div>
+
+      <h1 class="article-title">What is the EB-2 NIW?</h1>
+
+      <p class="article-lead">Most green cards come with a catch: you need an employer to sponsor you, go through a lengthy government review process, and hope your country of birth doesn't put you at the back of a very long line. EB-2 NIW removes the employer from the equation entirely. You make the case that your work is so valuable to the United States that it's in the national interest to let you stay – no company required.</p>
+
+      <hr class="article-divider">
+
+      <div class="article-toc">
+        <div class="article-toc__label">In this article</div>
+        <ol>
+          <li><a href="#what-is">What is the EB-2 NIW</a></li>
+          <li><a href="#vs-others">How NIW differs from other green cards</a></li>
+          <li><a href="#who">Who can get an EB-2 NIW</a></li>
+          <li><a href="#prongs">The three-prong test</a></li>
+          <li><a href="#practice">How it works in practice</a></li>
+          <li><a href="#vs-o1">EB-2 NIW and O-1A – what's the difference</a></li>
+          <li><a href="#faq">Frequently asked questions</a></li>
+        </ol>
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-body">
+
+        <div class="article-section" id="what-is">
+          <h2 class="article-section__title">What is the EB-2 NIW</h2>
+          <p>EB-2 NIW stands for Employment-Based Second Preference, National Interest Waiver. It's a green card category that lets people with advanced degrees or exceptional ability apply for permanent residency on their own – without a job offer or employer sponsor.</p>
+          <p>The "waiver" part is key. Normally, EB-2 requires a company to sponsor you and go through a process called PERM labor certification – essentially proving to the government that no qualified American can fill your role. NIW waives that requirement entirely.</p>
+        </div>
+
+        <div class="article-section" id="vs-others">
+          <h2 class="article-section__title">How NIW differs from other green cards</h2>
+          <p>Most employment-based green cards follow this path: employer finds you → employer sponsors you → employer goes through PERM → you wait. If the employer changes their mind, or the company gets acquired, or you want to leave – the whole process can collapse.</p>
+          <p>With NIW, you own the process. You file on your own, on your timeline, and your case doesn't depend on any single employer staying committed to you.</p>
+        </div>
+
+        <div class="article-section" id="who">
+          <h2 class="article-section__title">Who can get an EB-2 NIW</h2>
+          <p>Two types of people qualify for EB-2:</p>
+          <ul>
+            <li>People with an advanced degree (master's or higher, or a bachelor's plus five years of progressive experience)</li>
+            <li>People with exceptional ability in science, arts, or business – meaning a level of expertise significantly above average in their field</li>
+          </ul>
+          <p>NIW is available to both groups. What matters is not just your credentials, but what you're working on and why it matters.</p>
+          <p>This is where it gets interesting. EB-2 NIW isn't limited to academics or scientists. Founders building technology with broad societal impact, healthcare professionals, engineers working on infrastructure, educators, policy researchers – all have successfully received NIW green cards.</p>
+        </div>
+
+        <div class="article-section" id="prongs">
+          <h2 class="article-section__title">The three-prong test</h2>
+          <p>To qualify for NIW, your case needs to satisfy three things. This framework comes from a landmark 2016 immigration court decision called Matter of Dhanasar, and it's what USCIS uses today.</p>
+          <p><strong>Prong 1: Your work has substantial merit and national importance.</strong> Your proposed work needs to matter – not just to your employer or your career, but to the United States in a broader sense. This could be economic impact, scientific advancement, public health, education, national security, or cultural value. The scope doesn't have to be massive, but it needs to be meaningful beyond your immediate workplace.</p>
+          <p><strong>Prong 2: You are well-positioned to advance that work.</strong> USCIS needs to believe that you – specifically – are capable of doing what you're proposing. This is where your track record comes in: your education, your past projects, your recognition in the field, and any evidence that your work has already made an impact.</p>
+          <p><strong>Prong 3: It would benefit the US to waive the job offer requirement.</strong> This is the "why you, why now" part. You need to show that requiring a traditional employer sponsor would actually be against the national interest – because your work is too important, or too independent, or too entrepreneurial to fit neatly into a standard employment structure.</p>
+        </div>
+
+        <div class="article-section" id="practice">
+          <h2 class="article-section__title">How it works in practice</h2>
+          <p>Like EB-1A, the NIW process starts with filing Form I-140. You build your case around the three prongs – a personal statement explaining your work and its national importance, supporting documentation, and recommendation letters from people who can speak to the significance of what you do.</p>
+          <p>Once I-140 is approved, the path is the same as EB-1A: adjustment of status if you're in the US, consular processing if you're abroad.</p>
+          <p>One practical note: EB-2 NIW falls into a different visa preference category than EB-1A. For most countries there's no backlog, but processing times and priority dates can vary – worth checking the latest USCIS visa bulletin when you're planning your timeline.</p>
+        </div>
+
+        <div class="article-section" id="vs-o1">
+          <h2 class="article-section__title">EB-2 NIW and O-1A – what's the difference</h2>
+          <p>Both are paths that don't require an employer sponsor. But they're different in what they give you and what they ask of you.</p>
+          <p>O-1A is a temporary work visa. EB-2 NIW is a green card – permanent residency.</p>
+          <p>O-1A focuses on proving you're among the top in your field right now. NIW focuses on proving that your work serves a broader national purpose – the emphasis is more on what you're doing and why it matters, not just how accomplished you are.</p>
+          <p>In practice, many people pursue both. O-1A to get into the US and start working. NIW or EB-1A as the long-term path to permanent residency. The evidence you build while working on O-1 often strengthens your NIW case naturally.</p>
+        </div>
+
+        <div class="article-section" id="faq">
+          <h2 class="article-section__title">Frequently asked questions</h2>
+          <div class="article-faq">
+            <div class="article-faq__item">
+              <div class="article-faq__q">Do I need a PhD to apply for NIW?</div>
+              <div class="article-faq__a">No. A master's degree qualifies, and so does a bachelor's degree plus five years of progressive experience in your field. Exceptional ability – demonstrated through your work, not just your diploma – is also a valid path.</div>
+            </div>
+            <div class="article-faq__item">
+              <div class="article-faq__q">Can founders apply for NIW?</div>
+              <div class="article-faq__a">Yes. If your company is working on something with meaningful societal or economic impact, and you can articulate why your work matters beyond just building a business, NIW is a viable path. Many founders have used it successfully.</div>
+            </div>
+            <div class="article-faq__item">
+              <div class="article-faq__q">Is NIW easier than EB-1A?</div>
+              <div class="article-faq__a">They're different, not easier or harder. EB-1A asks "are you among the best in your field?" NIW asks "does your work serve the national interest?" Depending on your background, one framing may fit your story better than the other. Some people qualify for both and apply to both simultaneously.</div>
+            </div>
+            <div class="article-faq__item">
+              <div class="article-faq__q">What happens if my I-140 is approved but I'm not in the US yet?</div>
+              <div class="article-faq__a">You go through consular processing – essentially getting your green card stamped at a US embassy or consulate abroad before you enter the country.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-cta">
+        <div class="article-cta__title">Think you might qualify?</div>
+        <div class="article-cta__sub">Book a free 30-minute call. We'll look at your background honestly and tell you where you stand – no pitch, no pressure.</div>
+        <div>
+          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Book a free call</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
+        </a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Navigation</span>
+        <a href="index.html#visas">Visas</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Social Media</span>
+        <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Legal</span>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:contact@runapex.co">contact@runapex.co</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Apex. All rights reserved.</span>
+      <span>Made with love</span>
+    </div>
+    <div class="container footer__disclaimer">
+      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

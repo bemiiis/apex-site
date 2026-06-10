@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An RFE from USCIS isn't a rejection – it's a request. Here's what it means, why it happens, and how to respond to one properly.">
+  <title>What Is an RFE – and What Do You Do When You Get One? – Apex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .article-wrap {
+      max-width: 680px;
+      margin-inline: auto;
+      margin-top: calc(var(--nav-h) + 80px);
+      margin-bottom: 80px;
+      padding: 0 48px;
+      border: 1px solid var(--gray-2);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--gray-2);
+      margin: 0 -48px;
+    }
+
+    /* ── META ── */
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      padding: 20px 0;
+      transition: color .15s;
+    }
+    .article-back:hover { color: var(--black); }
+    .article-back svg { flex-shrink: 0; }
+
+    .article-meta {
+      display: flex;
+      align-items: stretch;
+      margin: 0 -48px;
+      border-top: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .article-meta__cell {
+      padding: 20px 24px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--black);
+      border-left: 1px solid var(--gray-2);
+    }
+    .article-meta__cell:first-child { border-left: none; }
+    .article-meta__cell--right {
+      margin-left: auto;
+      border-left: 1px solid var(--gray-2);
+    }
+
+    /* ── HEADING ── */
+    .article-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      padding-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.7;
+      padding-bottom: 40px;
+      margin-bottom: 0;
+    }
+
+    /* ── TOC ── */
+    .article-toc {
+      background: none;
+      padding: 40px 0;
+      margin-bottom: 0;
+    }
+    .article-toc__label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .article-toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .article-toc li::before { display: none; }
+    .article-toc a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .article-toc a:hover { color: var(--blue); }
+
+    /* ── BODY ── */
+    .article-body {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .article-section { scroll-margin-top: calc(var(--nav-h) + 32px); }
+
+    .article-section__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .article-section p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .article-section p:last-child { margin-bottom: 0; }
+    .article-section p strong { font-weight: 500; }
+
+    .article-section ul,
+    .article-section ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-section ul li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 16px;
+      position: relative;
+    }
+    .article-section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--black);
+    }
+
+    .article-section ol { counter-reset: ol; }
+    .article-section ol li {
+      counter-increment: ol;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 28px;
+      position: relative;
+    }
+    .article-section ol li::before {
+      content: counter(ol) '.';
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .article-section ol li strong,
+    .article-section ul li strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* ── CTA ── */
+    .article-cta {
+      padding: 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .article-cta__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+    .article-cta__sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 680px) {
+      .article-wrap { padding: 0 28px; margin-top: calc(var(--nav-h) + 40px); margin-bottom: 40px; }
+      .article-divider { margin: 0 -28px; }
+      .article-meta { margin: 0 -28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
+      </a>
+      <nav class="nav__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="nav__actions">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
+      </div>
+      <button class="nav__burger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="mobile-menu__bottom">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="article-wrap">
+
+      <a href="resources.html" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All articles
+      </a>
+
+      <div class="article-meta">
+        <div class="article-meta__cell">O-1A · EB-1A · EB-2 NIW</div>
+        <div class="article-meta__cell">Jun'26</div>
+        <div class="article-meta__cell article-meta__cell--right">4 min</div>
+      </div>
+
+      <h1 class="article-title">What Is an RFE – and What Do You Do When You Get One?</h1>
+
+      <p class="article-lead">Getting a Request for Evidence from USCIS can feel alarming. You filed your petition, you waited, and instead of an approval you got a document asking for more. It's easy to read it as bad news. It's not – at least not necessarily. An RFE is a request, not a rejection. And knowing how to handle it well makes all the difference.</p>
+
+      <hr class="article-divider">
+
+      <div class="article-toc">
+        <div class="article-toc__label">In this article</div>
+        <ol>
+          <li><a href="#what-is">What an RFE is</a></li>
+          <li><a href="#why">Why USCIS sends RFEs</a></li>
+          <li><a href="#looks-like">What an RFE actually looks like</a></li>
+          <li><a href="#respond">How to respond</a></li>
+          <li><a href="#after">What happens after you respond</a></li>
+          <li><a href="#reduce">How to reduce the chances of getting one</a></li>
+        </ol>
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-body">
+
+        <div class="article-section" id="what-is">
+          <h2 class="article-section__title">What an RFE is</h2>
+          <p>An RFE – Request for Evidence – is a formal notice from USCIS saying they need more information before they can make a decision on your petition. It's not a denial. It means the officer reviewing your case found something unclear, insufficiently documented, or missing entirely.</p>
+          <p>RFEs are common. They happen on strong cases and weak cases alike, though a well-prepared petition significantly reduces the chances of receiving one.</p>
+          <p>This applies to O-1A, EB-1A, and EB-2 NIW petitions alike. RFEs happen across all categories, and the way to respond is the same regardless of which one you filed.</p>
+        </div>
+
+        <div class="article-section" id="why">
+          <h2 class="article-section__title">Why USCIS sends RFEs</h2>
+          <p>The most common reasons:</p>
+          <ul>
+            <li><strong>Evidence doesn't clearly address a criterion.</strong> You claimed judging experience, but the documentation didn't specifically show you evaluated others' work in your field. You listed an award, but didn't explain what it means or how competitive it is.</li>
+            <li><strong>Recommendation letters are too generic.</strong> Letters that praise you warmly but don't speak to specific criteria – or that were clearly written by someone who doesn't really know your work – often trigger RFEs across all petition types.</li>
+            <li><strong>The argument isn't explicit enough.</strong> Especially in EB-2 NIW cases, USCIS wants to see the three-prong case made clearly and directly. Implying national importance isn't the same as demonstrating it.</li>
+            <li><strong>Missing or unsourced documentation.</strong> A salary comparison without a credible benchmark. A press mention without the full article. An award without context for what it represents in your field.</li>
+          </ul>
+        </div>
+
+        <div class="article-section" id="looks-like">
+          <h2 class="article-section__title">What an RFE actually looks like</h2>
+          <p>An RFE is a letter – sometimes several pages long – that identifies the specific issues USCIS needs you to address. It will cite the relevant law or regulation, explain what they found insufficient, and specify exactly what additional evidence they're requesting.</p>
+          <p>It will also include a response deadline. You typically have 87 days to respond, though this can vary. Missing the deadline results in a denial based on the record as submitted – so treat it seriously from day one.</p>
+        </div>
+
+        <div class="article-section" id="respond">
+          <h2 class="article-section__title">How to respond</h2>
+          <p>The most important thing: respond to every single point the RFE raises. Officers review RFE responses against the original letter, and anything left unaddressed is treated as unresolved.</p>
+          <p>A strong RFE response includes:</p>
+          <ul>
+            <li>A cover letter that directly addresses each issue raised, in the same order USCIS raised them.</li>
+            <li>New or supplementary evidence – additional letters, documentation, data – that fills the specific gaps identified.</li>
+            <li>A clear legal argument explaining why the evidence, taken together, meets the required standard – whether that's the extraordinary ability standard for O-1A and EB-1A, or the three-prong Dhanasar framework for NIW.</li>
+          </ul>
+          <p>This is not the time for a minimal response. USCIS gave you a specific list of what they need. Give it to them completely and clearly.</p>
+          <p>Work with your attorney or consultant on this. RFE responses are legal documents, and the way they're structured and argued matters as much as the evidence itself.</p>
+        </div>
+
+        <div class="article-section" id="after">
+          <h2 class="article-section__title">What happens after you respond</h2>
+          <p>USCIS reviews your response and issues one of three outcomes: approval, denial, or – in rare cases – another RFE. The timeline after submitting a response is similar to original processing times. If you filed with premium processing, the 15-business-day clock restarts once USCIS receives your response.</p>
+          <p>Most well-prepared RFE responses result in approval. An RFE is rarely the end of the road – it's more often a request for clarification that, when answered properly, resolves the issue entirely.</p>
+        </div>
+
+        <div class="article-section" id="reduce">
+          <h2 class="article-section__title">How to reduce the chances of getting one</h2>
+          <p>You can't guarantee you won't get an RFE – some officers are more thorough than others, and standards can vary. But you can make your petition as difficult to question as possible.</p>
+          <p>The things that most consistently reduce RFE risk: recommendation letters that are specific, credible, and directly tied to the criteria; evidence that's clearly labeled and contextualized; a legal brief that doesn't assume the officer will connect the dots – it connects them explicitly; and a thorough review before filing by someone who knows what RFEs look like and why they happen.</p>
+          <p>The goal is a petition where an officer reading it has no reason to ask questions – because the answers are already there.</p>
+        </div>
+
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-cta">
+        <div class="article-cta__title">Got an RFE? Let's talk.</div>
+        <div class="article-cta__sub">Book a free 30-minute call. We'll look at what USCIS is asking for and help you figure out the right response – no pitch, no pressure.</div>
+        <div>
+          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Book a free call</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
+        </a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Navigation</span>
+        <a href="index.html#visas">Visas</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Social Media</span>
+        <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Legal</span>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:contact@runapex.co">contact@runapex.co</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Apex. All rights reserved.</span>
+      <span>Made with love</span>
+    </div>
+    <div class="container footer__disclaimer">
+      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

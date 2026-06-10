@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The O-1A visa requires at least three of eight criteria. Here's what each one actually means – with real examples of what USCIS is looking for.">
+  <title>The 8 Criteria for O-1A – Explained With Real Examples – Apex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .article-wrap {
+      max-width: 680px;
+      margin-inline: auto;
+      margin-top: calc(var(--nav-h) + 80px);
+      margin-bottom: 80px;
+      padding: 0 48px;
+      border: 1px solid var(--gray-2);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--gray-2);
+      margin: 0 -48px;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      padding: 20px 0;
+      transition: color .15s;
+    }
+    .article-back:hover { color: var(--black); }
+    .article-back svg { flex-shrink: 0; }
+
+    .article-meta {
+      display: flex;
+      align-items: stretch;
+      margin: 0 -48px;
+      border-top: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .article-meta__cell {
+      padding: 20px 24px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--black);
+      border-left: 1px solid var(--gray-2);
+    }
+    .article-meta__cell:first-child { border-left: none; }
+    .article-meta__cell--right {
+      margin-left: auto;
+      border-left: 1px solid var(--gray-2);
+    }
+
+    .article-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      padding-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.7;
+      padding-bottom: 40px;
+      margin-bottom: 0;
+    }
+
+    .article-toc {
+      background: none;
+      padding: 40px 0;
+      margin-bottom: 0;
+    }
+    .article-toc__label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .article-toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .article-toc li::before { display: none; }
+    .article-toc a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .article-toc a:hover { color: var(--blue); }
+
+    .article-body {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .article-section { scroll-margin-top: calc(var(--nav-h) + 32px); }
+
+    .article-section__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .article-section p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .article-section p:last-child { margin-bottom: 0; }
+    .article-section p strong { font-weight: 500; }
+
+    .article-section ul,
+    .article-section ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-section ul li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 16px;
+      position: relative;
+    }
+    .article-section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--black);
+    }
+
+    .article-section ol { counter-reset: ol; }
+    .article-section ol li {
+      counter-increment: ol;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 28px;
+      position: relative;
+    }
+    .article-section ol li::before {
+      content: counter(ol) '.';
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .article-section ol li strong,
+    .article-section ul li strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .article-cta {
+      padding: 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .article-cta__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+    .article-cta__sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 680px) {
+      .article-wrap { padding: 0 28px; margin-top: calc(var(--nav-h) + 40px); margin-bottom: 40px; }
+      .article-divider { margin: 0 -28px; }
+      .article-meta { margin: 0 -28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
+      </a>
+      <nav class="nav__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="nav__actions">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
+      </div>
+      <button class="nav__burger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="mobile-menu__bottom">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="article-wrap">
+
+      <a href="resources.html" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All articles
+      </a>
+
+      <div class="article-meta">
+        <div class="article-meta__cell">O-1A</div>
+        <div class="article-meta__cell">Jun'26</div>
+        <div class="article-meta__cell article-meta__cell--right">6 min</div>
+      </div>
+
+      <h1 class="article-title">The 8 Criteria for O-1A – Explained With Real Examples</h1>
+
+      <p class="article-lead">The O-1A visa requires you to demonstrate extraordinary ability through at least three of eight criteria. On paper, those criteria sound formal and abstract. In practice, they're more accessible than most people expect – if you know how to read them. This article breaks down each criterion with real examples of what USCIS is actually looking for.</p>
+
+      <hr class="article-divider">
+
+      <div class="article-toc">
+        <div class="article-toc__label">In this article</div>
+        <ol>
+          <li><a href="#how">How the criteria work</a></li>
+          <li><a href="#awards">Awards and prizes</a></li>
+          <li><a href="#membership">Membership in associations requiring outstanding achievement</a></li>
+          <li><a href="#press">Published material about you in professional or major media</a></li>
+          <li><a href="#judging">Judging the work of others in your field</a></li>
+          <li><a href="#contributions">Original contributions of major significance</a></li>
+          <li><a href="#articles">Authorship of scholarly articles</a></li>
+          <li><a href="#role">Critical or essential role in distinguished organizations</a></li>
+          <li><a href="#salary">High remuneration relative to others in your field</a></li>
+          <li><a href="#how-many">How many do you need?</a></li>
+        </ol>
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-body">
+
+        <div class="article-section" id="how">
+          <h2 class="article-section__title">How the criteria work</h2>
+          <p>The eight criteria aren't a checklist where each item is worth the same. They're categories of evidence, and within each category, what matters is the quality and credibility of what you can show.</p>
+          <p>USCIS doesn't just count criteria – they assess the overall picture. Meeting three criteria with strong, specific, well-documented evidence is far better than meeting five criteria with thin, generic proof. The goal is to build a compelling, cohesive case, not to tick boxes.</p>
+        </div>
+
+        <div class="article-section" id="awards">
+          <h2 class="article-section__title">1. Awards and prizes</h2>
+          <p><strong>What USCIS is looking for:</strong> Recognition from your field for excellence. The award needs to be meaningful – not participation certificates or internal company awards, but recognition that carries weight in your industry.</p>
+          <p><strong>What counts:</strong> Industry awards judged by panels of experts. National or international competition wins. Grants awarded competitively. "Best of" recognitions from respected publications or organizations in your field.</p>
+          <p><strong>What doesn't count:</strong> Awards you gave yourself or your company. Participation trophies. Recognition from organizations with no standing in your field.</p>
+          <p><strong>Real example:</strong> A product designer who won a Webby Award, or an engineer who received a competitive research grant from a recognized foundation. Neither is famous – but both have documented, external recognition of their work.</p>
+        </div>
+
+        <div class="article-section" id="membership">
+          <h2 class="article-section__title">2. Membership in associations requiring outstanding achievement</h2>
+          <p><strong>What USCIS is looking for:</strong> Membership in organizations that don't let just anyone join – where admission is based on demonstrated excellence, judged by existing members or an expert panel.</p>
+          <p><strong>What counts:</strong> Professional associations with selective, merit-based admission. Organizations where membership requires peer nomination or a review process. Invitation-only groups for recognized practitioners in a field.</p>
+          <p><strong>What doesn't count:</strong> Open-enrollment professional associations where anyone can pay to join. LinkedIn groups. Alumni networks.</p>
+          <p><strong>Real example:</strong> Membership in a national academy, a selective professional fellowship, or an invitation-only industry council where admission requires peer review.</p>
+        </div>
+
+        <div class="article-section" id="press">
+          <h2 class="article-section__title">3. Published material about you in professional or major media</h2>
+          <p><strong>What USCIS is looking for:</strong> Coverage of you and your work in publications that reach your professional community or a broader audience – not content you wrote yourself, but content written about you.</p>
+          <p><strong>What counts:</strong> Articles in industry publications, trade press, or mainstream media that specifically cover your work or profile you as an expert. Podcast interviews where you're positioned as an authority. Features in newsletters with significant reach in your field.</p>
+          <p><strong>What doesn't count:</strong> Press releases you issued. Guest posts you wrote. Social media mentions. Coverage of a company you work for that doesn't specifically mention you.</p>
+          <p><strong>Real example:</strong> A UX designer featured in a Fast Company article about design trends, or a startup founder profiled in TechCrunch. The coverage doesn't have to be a cover story – it just needs to be substantive and about your work.</p>
+        </div>
+
+        <div class="article-section" id="judging">
+          <h2 class="article-section__title">4. Judging the work of others in your field</h2>
+          <p><strong>What USCIS is looking for:</strong> Evidence that your peers recognize your expertise by asking you to evaluate their work. This is one of the most actionable criteria – it can be built relatively quickly if you don't already have it.</p>
+          <p><strong>What counts:</strong> Serving on a jury for industry awards or competitions. Peer reviewing academic or professional publications. Evaluating applications for grants, fellowships, or accelerators. Mentoring or judging at hackathons, design competitions, or pitch events.</p>
+          <p><strong>What doesn't count:</strong> Informal feedback to colleagues. Performance reviews of your own team members. Evaluating work as part of your regular job responsibilities.</p>
+          <p><strong>Real example:</strong> A developer who judged at a major hackathon, a researcher who peer-reviewed papers for an academic journal, or a designer who served on the jury for a design award. The key is that you were selected for the role because of your expertise.</p>
+        </div>
+
+        <div class="article-section" id="contributions">
+          <h2 class="article-section__title">5. Original contributions of major significance</h2>
+          <p><strong>What USCIS is looking for:</strong> Evidence that your work has actually moved the needle in your field – that something you built, discovered, wrote, or introduced has had a meaningful impact beyond your immediate workplace.</p>
+          <p><strong>What counts:</strong> Open source projects with significant adoption. Research that has been cited or built upon by others. Methodologies or frameworks that others in your field have adopted. Products that have meaningfully changed how people work or live. Patents that have been licensed or implemented.</p>
+          <p><strong>What doesn't count:</strong> Work that was significant to your employer but hasn't had demonstrable impact outside your organization. General claims of being innovative without specific evidence.</p>
+          <p><strong>Real example:</strong> An engineer whose open source library has thousands of GitHub stars and is used in production by other companies. A researcher whose paper has been cited 50 times in subsequent work. A designer whose design system was adopted by multiple teams across the industry.</p>
+        </div>
+
+        <div class="article-section" id="articles">
+          <h2 class="article-section__title">6. Authorship of scholarly articles</h2>
+          <p><strong>What USCIS is looking for:</strong> Written contributions to your field's body of knowledge – published in venues that your professional community reads and respects.</p>
+          <p><strong>What counts:</strong> Academic papers in peer-reviewed journals or conference proceedings. Articles in respected industry publications. Long-form pieces on professional platforms with real readership in your field. A well-known industry newsletter or blog with a significant, professional audience.</p>
+          <p><strong>What doesn't count:</strong> Personal blog posts with no significant readership. Social media threads. Internal company documents.</p>
+          <p><strong>Real example:</strong> A data scientist who published a paper at a major ML conference, or a UX researcher who regularly writes for Nielsen Norman Group. The venue matters – the question is whether your professional community actually reads it.</p>
+        </div>
+
+        <div class="article-section" id="role">
+          <h2 class="article-section__title">7. Critical or essential role in distinguished organizations</h2>
+          <p><strong>What USCIS is looking for:</strong> Evidence that you've held a key position – not just worked at – an organization that is recognized as significant in your field. The role needs to be critical to the organization's work, not just a senior title.</p>
+          <p><strong>What counts:</strong> A lead or founding role at a well-known company or organization. A position where you were responsible for outcomes that mattered to the organization's core mission. Being identified as essential to a specific project or initiative with significant impact.</p>
+          <p><strong>What doesn't count:</strong> Working at a prestigious company in a standard role. A senior title without evidence of critical contribution. Roles at companies with no particular standing in your field.</p>
+          <p><strong>Real example:</strong> A founding engineer at a company that went on to significant scale, or a creative director whose work defined the visual identity of a recognized brand.</p>
+        </div>
+
+        <div class="article-section" id="salary">
+          <h2 class="article-section__title">8. High remuneration relative to others in your field</h2>
+          <p><strong>What USCIS is looking for:</strong> Evidence that you're paid significantly more than most people doing comparable work – which, by implication, suggests your employer considers you exceptionally valuable.</p>
+          <p><strong>What counts:</strong> Salary data compared to published benchmarks for your role, level, and location. Equity compensation at significant value. Total compensation packages that place you in the upper tier of your field.</p>
+          <p><strong>What doesn't count:</strong> A high salary in absolute terms without comparison to field benchmarks. Compensation that's standard for your role and level.</p>
+          <p><strong>Real example:</strong> An engineer earning 40% above the median salary for their role according to Bureau of Labor Statistics data, or a designer with a total compensation package that places them in the top 10% of their field.</p>
+        </div>
+
+        <div class="article-section" id="how-many">
+          <h2 class="article-section__title">How many do you need?</h2>
+          <p>Three is the minimum. But meeting three criteria doesn't automatically mean you qualify – USCIS then looks at your case holistically and asks whether the overall picture supports a finding of extraordinary ability.</p>
+          <p>In practice, most successful O-1A petitions address four or five criteria, with strong evidence across each one. The goal isn't to barely clear the bar – it's to build a case that tells a clear, compelling story about who you are and why you're exceptional at what you do.</p>
+        </div>
+
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-cta">
+        <div class="article-cta__title">Want to know which criteria you meet?</div>
+        <div class="article-cta__sub">Book a free 30-minute call. We'll go through your profile and tell you honestly where you stand – no pitch, no pressure.</div>
+        <div>
+          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Book a free call</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
+        </a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Navigation</span>
+        <a href="index.html#visas">Visas</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Social Media</span>
+        <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Legal</span>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:contact@runapex.co">contact@runapex.co</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Apex. All rights reserved.</span>
+      <span>Made with love</span>
+    </div>
+    <div class="container footer__disclaimer">
+      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

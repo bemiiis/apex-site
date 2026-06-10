@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EB-1A is the green card for people with extraordinary ability. No employer sponsor, no lottery, no waiting in line. Here's how it works.">
+  <title>What is the EB-1A visa? – Apex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .article-wrap {
+      max-width: 680px;
+      margin-inline: auto;
+      margin-top: calc(var(--nav-h) + 80px);
+      margin-bottom: 80px;
+      padding: 0 48px;
+      border: 1px solid var(--gray-2);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--gray-2);
+      margin: 0 -48px;
+    }
+
+    /* ── META ── */
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      padding: 20px 0;
+      transition: color .15s;
+    }
+    .article-back:hover { color: var(--black); }
+    .article-back svg { flex-shrink: 0; }
+
+    .article-meta {
+      display: flex;
+      align-items: stretch;
+      margin: 0 -48px;
+      border-top: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .article-meta__cell {
+      padding: 20px 24px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--black);
+      border-left: 1px solid var(--gray-2);
+    }
+    .article-meta__cell:first-child {
+      border-left: none;
+    }
+    .article-meta__cell--right {
+      margin-left: auto;
+      border-left: 1px solid var(--gray-2);
+    }
+
+    /* ── HEADING ── */
+    .article-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      padding-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.7;
+      padding-bottom: 40px;
+      margin-bottom: 0;
+    }
+
+    /* ── TOC ── */
+    .article-toc {
+      background: none;
+      padding: 40px 0;
+      margin-bottom: 0;
+    }
+    .article-toc__label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .article-toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .article-toc li::before {
+      display: none;
+    }
+    .article-toc a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .article-toc a:hover { color: var(--blue); }
+
+    /* ── BODY ── */
+    .article-body {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .article-section { scroll-margin-top: calc(var(--nav-h) + 32px); }
+
+    .article-section__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .article-section p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .article-section p:last-child { margin-bottom: 0; }
+
+    .article-section ul,
+    .article-section ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-section ul li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 16px;
+      position: relative;
+    }
+    .article-section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--black);
+    }
+
+    .article-section ol {
+      counter-reset: ol;
+    }
+    .article-section ol li {
+      counter-increment: ol;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 28px;
+      position: relative;
+    }
+    .article-section ol li::before {
+      content: counter(ol) '.';
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .article-section ol li strong,
+    .article-section ul li strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* ── FAQ ── */
+    .article-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .article-faq__item { }
+    .article-faq__q {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .article-faq__a {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--black);
+    }
+
+    /* ── CTA ── */
+    .article-cta {
+      padding: 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .article-cta__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+    .article-cta__sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+
+    @media (max-width: 680px) {
+      .article-wrap { padding: 0 28px; margin-top: calc(var(--nav-h) + 40px); margin-bottom: 40px; }
+      .article-divider { margin: 0 -28px; }
+      .article-meta { margin: 0 -28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
+      </a>
+      <nav class="nav__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="nav__actions">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
+      </div>
+      <button class="nav__burger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="mobile-menu__bottom">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="article-wrap">
+
+      <a href="resources.html" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All articles
+      </a>
+
+      <div class="article-meta">
+        <div class="article-meta__cell">EB-1A</div>
+        <div class="article-meta__cell">Jun'26</div>
+        <div class="article-meta__cell article-meta__cell--right">3 min</div>
+      </div>
+
+      <h1 class="article-title">What is the EB-1A visa?</h1>
+
+      <p class="article-lead">If the O-1 is a work visa, EB-1A is the path to a green card. Permanent residence in the US. No employer sponsor, no lottery, and for most countries, no waiting in line.</p>
+
+      <hr class="article-divider">
+
+      <div class="article-toc">
+        <div class="article-toc__label">In this article</div>
+        <ol>
+          <li><a href="#what-is">What is the EB-1A visa</a></li>
+          <li><a href="#vs-o1">How EB-1A differs from O-1</a></li>
+          <li><a href="#who">Who can get an EB-1A</a></li>
+          <li><a href="#practice">How it works in practice</a></li>
+          <li><a href="#special">Why EB-1A is a special category</a></li>
+          <li><a href="#together">O-1A and EB-1A together</a></li>
+          <li><a href="#faq">Frequently asked questions</a></li>
+        </ol>
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-body">
+
+        <div class="article-section" id="what-is">
+          <h2 class="article-section__title">What is the EB-1A visa</h2>
+          <p>EB-1A is described as a visa for people with extraordinary ability. That sounds intimidating, but the logic is the same as with O-1: USCIS wants to see evidence that you're among the best in your field.</p>
+        </div>
+
+        <div class="article-section" id="vs-o1">
+          <h2 class="article-section__title">How EB-1A differs from O-1</h2>
+          <p>The main difference isn't in the criteria – it's in what you actually get at the end.</p>
+          <p>O-1 is a temporary visa. You live and work in the US while it's valid, and renew it every year.</p>
+          <p>EB-1A is a green card. Permanent residency. You can work anywhere, for anyone, or for yourself. You can travel freely. And after a few years, you can apply for citizenship.</p>
+          <p>Another key difference: EB-1A is a self-petition. You apply on your own, without an employer. That's rare among green card categories.</p>
+        </div>
+
+        <div class="article-section" id="who">
+          <h2 class="article-section__title">Who can get an EB-1A</h2>
+          <p>The criteria are similar to O-1A, but the bar is a bit higher – this is permanent status, not a temporary visa.</p>
+          <p>USCIS evaluates against ten criteria, and you need to meet at least three: awards, press coverage, judging roles, original contributions, scholarly articles, critical roles in distinguished organizations, high salary, membership in selective organizations, display of work at exhibitions, and commercial success.</p>
+          <p>But here's the important nuance. Once you meet three or more criteria, USCIS takes a second look – at your case as a whole – and asks: "Is this person truly among the small percentage who have risen to the top of their field?"</p>
+          <p>This is called the final merits determination. And this is where the narrative of your case matters just as much as the individual facts.</p>
+        </div>
+
+        <div class="article-section" id="practice">
+          <h2 class="article-section__title">How it works in practice</h2>
+          <p>The process starts with filing Form I-140 – an immigrant petition. You build your evidence base, an attorney or immigration consultant drafts the petition, and it goes to USCIS.</p>
+          <p>If I-140 is approved, the next step depends on where you are:</p>
+          <ul>
+            <li>If you're in the US – you file for adjustment of status</li>
+            <li>If you're abroad – you go through consular processing</li>
+          </ul>
+          <p>Either way, the result is a green card.</p>
+        </div>
+
+        <div class="article-section" id="special">
+          <h2 class="article-section__title">Why EB-1A is a special category</h2>
+          <p>Most green cards require an employer sponsor and a lengthy PERM labor certification process – a review proving no qualified American candidates exist for your role. That can take years.</p>
+          <p>EB-1A requires neither. You sponsor yourself. No employer, no PERM.</p>
+          <p>And for most countries, there's no priority date queue. That means once your I-140 is approved, you can move forward almost immediately. The exception is India and China, where demand is high enough to create long backlogs.</p>
+        </div>
+
+        <div class="article-section" id="together">
+          <h2 class="article-section__title">O-1A and EB-1A together</h2>
+          <p>Many people take this path: get the O-1A first to start living and working in the US, then apply for EB-1A either in parallel or after some time.</p>
+          <p>It makes sense. While you're working in the US on an O-1, you keep building your evidence – speaking at events, publishing, shipping projects. Your EB-1A case gets stronger naturally.</p>
+        </div>
+
+        <div class="article-section" id="faq">
+          <h2 class="article-section__title">Frequently asked questions</h2>
+          <div class="article-faq">
+            <div class="article-faq__item">
+              <div class="article-faq__q">Do I need a job offer from an employer?</div>
+              <div class="article-faq__a">No. EB-1A is one of the few green card categories where you apply on your own.</div>
+            </div>
+            <div class="article-faq__item">
+              <div class="article-faq__q">What's the difference between EB-1A and EB-1B?</div>
+              <div class="article-faq__a">EB-1B is for outstanding professors and researchers. It requires a job offer from a university or research institution. EB-1A is for a broader range of people and doesn't require an employer.</div>
+            </div>
+            <div class="article-faq__item">
+              <div class="article-faq__q">If I already have an O-1A, how much harder is EB-1A?</div>
+              <div class="article-faq__a">O-1A and EB-1A share similar criteria, but approval of one doesn't guarantee the other. The EB-1A standard is slightly higher, and USCIS officers review the case fresh. That said, if you already have an O-1A, it's a good sign that the foundation for EB-1A is there too.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-cta">
+        <div class="article-cta__title">Think you might qualify?</div>
+        <div class="article-cta__sub">Book a free 30-minute call. We'll look at your background honestly and tell you where you stand – no pitch, no pressure.</div>
+        <div>
+          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Book a free call</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
+        </a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Navigation</span>
+        <a href="index.html#visas">Visas</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Social Media</span>
+        <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Legal</span>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:contact@runapex.co">contact@runapex.co</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Apex. All rights reserved.</span>
+      <span>Made with love</span>
+    </div>
+    <div class="container footer__disclaimer">
+      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

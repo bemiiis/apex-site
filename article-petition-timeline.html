@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How long does it take to prepare and file an O-1 or EB-1A petition? Here's an honest breakdown of every phase – preparation, USCIS, and the part most people forget.">
+  <title>How Long Does It Actually Take to Prepare a Petition? – Apex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    .article-wrap {
+      max-width: 680px;
+      margin-inline: auto;
+      margin-top: calc(var(--nav-h) + 80px);
+      margin-bottom: 80px;
+      padding: 0 48px;
+      border: 1px solid var(--gray-2);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--gray-2);
+      margin: 0 -48px;
+    }
+
+    /* ── META ── */
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      padding: 20px 0;
+      transition: color .15s;
+    }
+    .article-back:hover { color: var(--black); }
+    .article-back svg { flex-shrink: 0; }
+
+    .article-meta {
+      display: flex;
+      align-items: stretch;
+      margin: 0 -48px;
+      border-top: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .article-meta__cell {
+      padding: 20px 24px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--black);
+      border-left: 1px solid var(--gray-2);
+    }
+    .article-meta__cell:first-child { border-left: none; }
+    .article-meta__cell--right {
+      margin-left: auto;
+      border-left: 1px solid var(--gray-2);
+    }
+
+    /* ── HEADING ── */
+    .article-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      padding-top: 40px;
+      margin-bottom: 24px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.7;
+      padding-bottom: 40px;
+      margin-bottom: 0;
+    }
+
+    /* ── TOC ── */
+    .article-toc {
+      background: none;
+      padding: 40px 0;
+      margin-bottom: 0;
+    }
+    .article-toc__label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .article-toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-toc li {
+      counter-increment: toc;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .article-toc li::before { display: none; }
+    .article-toc a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .article-toc a:hover { color: var(--blue); }
+
+    /* ── BODY ── */
+    .article-body {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .article-section { scroll-margin-top: calc(var(--nav-h) + 32px); }
+
+    .article-section__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .article-section p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .article-section p:last-child { margin-bottom: 0; }
+    .article-section p strong { font-weight: 500; }
+
+    .article-section ul,
+    .article-section ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-section ul li {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 16px;
+      position: relative;
+    }
+    .article-section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--black);
+    }
+
+    .article-section ol { counter-reset: ol; }
+    .article-section ol li {
+      counter-increment: ol;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--black);
+      padding-left: 28px;
+      position: relative;
+    }
+    .article-section ol li::before {
+      content: counter(ol) '.';
+      position: absolute;
+      left: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .article-section ol li strong,
+    .article-section ul li strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* ── FAQ ── */
+    .article-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .article-faq__q {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .article-faq__a {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--black);
+    }
+
+    /* ── CTA ── */
+    .article-cta {
+      padding: 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .article-cta__title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+    }
+    .article-cta__sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 680px) {
+      .article-wrap { padding: 0 28px; margin-top: calc(var(--nav-h) + 40px); margin-bottom: 40px; }
+      .article-divider { margin: 0 -28px; }
+      .article-meta { margin: 0 -28px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
+      </a>
+      <nav class="nav__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="nav__actions">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
+      </div>
+      <button class="nav__burger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__links">
+        <a href="/#visas">Visas</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/scout.html">Scout</a>
+        <a href="/company.html">Company</a>
+      
+      </nav>
+      <div class="mobile-menu__bottom">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="article-wrap">
+
+      <a href="resources.html" class="article-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All articles
+      </a>
+
+      <div class="article-meta">
+        <div class="article-meta__cell">O-1A · EB-1A · EB-2 NIW</div>
+        <div class="article-meta__cell">Jun'26</div>
+        <div class="article-meta__cell article-meta__cell--right">5 min</div>
+      </div>
+
+      <h1 class="article-title">How Long Does It Actually Take to Prepare a Petition?</h1>
+
+      <p class="article-lead">When people ask "how long does the O-1 take?" they're usually asking two different questions at once. The first is how long it takes to prepare and file the petition. The second is how long USCIS takes to make a decision. These are very different, and confusing them leads to a lot of unnecessary stress. But there's actually a third phase that comes before both – and it's the one most people forget to plan for.</p>
+
+      <hr class="article-divider">
+
+      <div class="article-toc">
+        <div class="article-toc__label">In this article</div>
+        <ol>
+          <li><a href="#ready">Before you even start: is your case ready?</a></li>
+          <li><a href="#two-timelines">The two timelines people confuse</a></li>
+          <li><a href="#prep-time">How long preparation takes</a></li>
+          <li><a href="#uscis-time">How long USCIS takes</a></li>
+          <li><a href="#delays">What slows things down</a></li>
+          <li><a href="#realistic">A realistic end-to-end timeline</a></li>
+        </ol>
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-body">
+
+        <div class="article-section" id="ready">
+          <h2 class="article-section__title">Before you even start: is your case ready?</h2>
+          <p>Before you can build a strong petition, you need strong evidence. And sometimes, that evidence doesn't exist yet.</p>
+          <p>If you're missing two or three criteria entirely, or if your existing proof is thin – one weak press mention, no judging experience, no clear record of impact – the honest answer is that filing now would be premature. A rushed petition with insufficient evidence is more likely to get an RFE or a denial, and more expensive to fix after the fact.</p>
+          <p>The better move is to spend time building your case first. Here's what that can look like in practice:</p>
+          <ul>
+            <li><strong>Judging and evaluation roles</strong> are one of the fastest criteria to build. Look for hackathon juries, grant review panels, award committees, or peer review opportunities in your field. Many of these are accessible if you reach out – especially if you already have some visibility in your industry.</li>
+            <li><strong>Press and media coverage</strong> can be proactive. Writing for industry publications, being quoted as an expert, or getting your work featured takes time, but it's buildable. A few targeted pitches to relevant outlets over 2 to 3 months can meaningfully strengthen this criterion.</li>
+            <li><strong>Recommendation letters</strong> aren't something you manufacture, but they are something you cultivate. If you don't yet have senior people in your field who know your work well enough to write substantively about it – that relationship-building takes time.</li>
+            <li><strong>Contribution to your field</strong> is harder to fast-track, but if you have work that's already had impact, the task is often documenting it better – getting it cited, referenced, or formally recognized – rather than creating something new.</li>
+          </ul>
+          <p>How long does case-building take? It varies enormously. Some people are two or three months away from a strong filing. Others need six months to a year to meaningfully fill their gaps. The earlier you assess your case honestly, the more options you have.</p>
+        </div>
+
+        <div class="article-section" id="two-timelines">
+          <h2 class="article-section__title">The two timelines people confuse</h2>
+          <p><strong>Preparation time</strong> is everything that happens before you submit: gathering evidence, writing your personal statement, collecting recommendation letters, drafting the legal brief. This part is in your hands – and your consultant's.</p>
+          <p><strong>Processing time</strong> is everything after submission: USCIS reviewing your case and issuing a decision. This part is entirely out of your hands.</p>
+        </div>
+
+        <div class="article-section" id="prep-time">
+          <h2 class="article-section__title">How long preparation takes</h2>
+          <p>For most people, preparation takes between 6 and 12 weeks. Here's why.</p>
+          <p>The legal brief alone – the document that argues your case to USCIS – takes time to research and write well. But the bigger variable is usually the evidence. Recommendation letters are the most common bottleneck. You're asking busy, senior people in your field to write detailed, substantive letters on your behalf. Some respond in a week. Others take a month. A few go quiet entirely and need follow-ups.</p>
+          <p>Other documents – press coverage, salary data, award certificates, contracts – are usually faster to gather, but they still need to be organized, translated if necessary, and formatted properly.</p>
+          <p>If you're well-prepared going in – meaning you've already identified your recommenders, have your documents organized, and know your story – preparation can move faster. If you're starting from scratch and need to think through your evidence strategy first, budget closer to 3 months.</p>
+        </div>
+
+        <div class="article-section" id="uscis-time">
+          <h2 class="article-section__title">How long USCIS takes</h2>
+          <p>Standard processing for O-1A currently runs anywhere from 2 to 4 months, though it can be longer during high-volume periods. EB-1A and EB-2 NIW I-140 petitions run similarly – roughly 4 to 6 months on standard processing, sometimes more.</p>
+          <p>These timelines shift. USCIS publishes processing time estimates on their website, and they update regularly. Always check the current numbers rather than relying on what someone told you six months ago.</p>
+        </div>
+
+        <div class="article-section" id="delays">
+          <h2 class="article-section__title">What slows things down</h2>
+          <p>A few things consistently cause delays:</p>
+          <ul>
+            <li><strong>RFE – Request for Evidence.</strong> If USCIS needs more information, they send an RFE and pause the clock until you respond. This can add weeks or months to your timeline.</li>
+            <li><strong>Incomplete or weak evidence.</strong> Petitions that don't clearly address each criterion, or that rely on vague letters and thin documentation, are more likely to get RFEs – or denials.</li>
+            <li><strong>Recommender delays.</strong> As mentioned – this is the most common human bottleneck in the preparation phase.</li>
+          </ul>
+        </div>
+
+        <div class="article-section" id="realistic">
+          <h2 class="article-section__title">A realistic end-to-end timeline</h2>
+          <p>With all three phases included, here's what the full picture looks like:</p>
+          <ul>
+            <li><strong>Months 1–6 (sometimes more):</strong> Case building – strengthening evidence, building relationships, filling gaps in your criteria</li>
+            <li><strong>Weeks 1–2:</strong> Evidence strategy – reviewing what you have, identifying recommenders</li>
+            <li><strong>Weeks 3–8:</strong> Gathering documents and letters</li>
+            <li><strong>Weeks 8–12:</strong> Legal brief drafting and review</li>
+            <li><strong>Week 12:</strong> Submission</li>
+            <li><strong>Months 3–6 after submission:</strong> USCIS decision (standard processing)</li>
+          </ul>
+          <p>From "I want to do this eventually" to "I have a decision in hand" – for many people, the realistic timeline is 1 to 2 years. That's not a reason to wait. It's a reason to start now.</p>
+        </div>
+
+      </div>
+
+      <hr class="article-divider">
+
+      <div class="article-cta">
+        <div class="article-cta__title">Ready to start?</div>
+        <div class="article-cta__sub">Book a free 30-minute call. We'll look at your background honestly and tell you where you stand – no pitch, no pressure.</div>
+        <div>
+          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Book a free call</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo footer__logo">
+          <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
+        </a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Navigation</span>
+        <a href="index.html#visas">Visas</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Social Media</span>
+        <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Legal</span>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:contact@runapex.co">contact@runapex.co</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© 2026 Apex. All rights reserved.</span>
+      <span>Made with love</span>
+    </div>
+    <div class="container footer__disclaimer">
+      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
