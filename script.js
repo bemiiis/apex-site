@@ -516,8 +516,8 @@ document.querySelectorAll('.steps-scroll').forEach(el => {
 //     (now-hidden) vertical dividers with horizontal ones between stacked cards —
 //     same divider, rotated 90° to match the new stacking direction. ──
 (function () {
-  const GRID_SELECTOR = '.who-cards, .pricing-cards, .features-row';
-  const CARD_SELECTOR = '.who-card, .pricing-card, .feature-card';
+  const GRID_SELECTOR = '.who-cards, .pricing-cards, .features-row, .platform-why';
+  const CARD_SELECTOR = '.who-card, .pricing-card, .feature-card, .platform-why__item';
 
   function updateStackedDividers() {
     document.querySelectorAll('.stacked-hdivider').forEach(el => el.remove());
@@ -541,13 +541,15 @@ document.querySelectorAll('.steps-scroll').forEach(el => {
       if (getComputedStyle(section).position === 'static') section.style.position = 'relative';
       const sectionTop = section.getBoundingClientRect().top;
 
+      const dividerColor = section.classList.contains('section--dark') ? 'rgba(255,255,255,.12)' : 'var(--gray-2)';
+
       for (let i = 0; i < cards.length - 1; i++) {
         const a = cards[i].getBoundingClientRect();
         const b = cards[i + 1].getBoundingClientRect();
         const mid = (a.bottom + b.top) / 2 - sectionTop;
         const div = document.createElement('div');
         div.className = 'stacked-hdivider';
-        div.style.cssText = `position:absolute;left:0;right:0;top:${mid}px;height:1px;background:var(--gray-2);pointer-events:none;z-index:2;`;
+        div.style.cssText = `position:absolute;left:0;right:0;top:${mid}px;height:1px;background:${dividerColor};pointer-events:none;z-index:2;`;
         section.appendChild(div);
       }
     });
