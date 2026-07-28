@@ -500,3 +500,48 @@ document.querySelectorAll('.steps-scroll').forEach(el => {
     el.scrollLeft += e.deltaY;
   }, { passive: false });
 });
+
+// ─── MOBILE CARD GRIDS: when a grid collapses to a single column, replace the
+//     (now-hidden) vertical dividers with horizontal ones between stacked cards —
+//     same divider, rotated 90° to match the new stacking direction. ──
+(function () {
+  const GRID_SELECTOR = '.who-cards, .pricing-cards, .features-row';
+  const CARD_SELECTOR = '.who-card, .pricing-card, .feature-card';
+
+  function updateStackedDividers() {
+    document.querySelectorAll(GRID_SELECTOR).forEach(grid => {
+      grid.querySelectorAll(':scope > .stacked-hdivider').forEach(el => el.remove());
+
+      const cards = Array.from(grid.children).filter(el =>
+        el.matches(CARD_SELECTOR) && getComputedStyle(el).display !== 'none'
+      );
+      if (cards.length < 2) return;
+
+      // single column only: every card's row (by top position) must be unique
+      const tops = cards.map(c => Math.round(c.getBoundingClientRect().top));
+      const isSingleColumn = new Set(tops).size === cards.length;
+      if (!isSingleColumn) return;
+
+      if (getComputedStyle(grid).position === 'static') grid.style.position = 'relative';
+      const gridTop = grid.getBoundingClientRect().top;
+
+      for (let i = 0; i < cards.length - 1; i++) {
+        const a = cards[i].getBoundingClientRect();
+        const b = cards[i + 1].getBoundingClientRect();
+        const mid = (a.bottom + b.top) / 2 - gridTop;
+        const div = document.createElement('div');
+        div.className = 'stacked-hdivider';
+        div.style.cssText = `position:absolute;left:0;right:0;top:${mid}px;height:1px;background:var(--gray-2);pointer-events:none;z-index:2;`;
+        grid.appendChild(div);
+      }
+    });
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateStackedDividers, 100);
+  });
+  window.addEventListener('load', updateStackedDividers);
+  document.addEventListener('DOMContentLoaded', updateStackedDividers);
+})();

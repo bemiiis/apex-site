@@ -19,6 +19,10 @@
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap">
   <link rel="stylesheet" href="styles.css?v=139">
   <style>
+    /* hero illustration keeps its true proportions (same principle as the footer
+       illustration) instead of being stretched to fill the section box */
+    .hero__bridge svg { height: auto; aspect-ratio: 1416 / 465; }
+
     /* checkmark bullets, matches pricing__list elsewhere on the site */
     .pricing__list li::before {
       content: '';

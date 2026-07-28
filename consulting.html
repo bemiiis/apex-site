@@ -19,6 +19,10 @@
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap">
   <link rel="stylesheet" href="styles.css?v=96">
   <style>
+    /* hero illustration keeps its true proportions (same principle as the footer
+       illustration) instead of being stretched to fill the section box */
+    .hero__bridge svg { height: auto; aspect-ratio: 1244 / 582; }
+
     /* Responsive: steps timeline and article grid collapse on small screens */
     @media (max-width: 900px) {
       .steps-track { grid-template-columns: repeat(2, 1fr) !important; }
