@@ -202,7 +202,253 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
 
-document.querySelectorAll('.card, .process-step, .criterion, .testimonial, .pricing-card').forEach((el, i) => {
+// ─── PHASE BLOCK ANIMATIONS (index.html #features, 6 phases, loop while in view) ──
+(function () {
+  const phaseBlocks = document.querySelectorAll('.phase-block');
+  if (!phaseBlocks.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const T = 1.6; // global pacing multiplier — slows every step/cycle uniformly
+
+  // snapshot each block's original DOM text so every loop can reset to a clean "before" state
+  document.querySelectorAll('.mock-panel__label[data-scene-text]').forEach(el => {
+    el.dataset.loadingText = el.textContent;
+  });
+  document.querySelectorAll('.mock-badge.mock-badge--pending').forEach(el => {
+    el.dataset.pendingText = el.textContent;
+  });
+
+  function track(block, id) {
+    (block._timeouts || (block._timeouts = [])).push(id);
+  }
+  function clearTracked(block) {
+    (block._timeouts || []).forEach(clearTimeout);
+    block._timeouts = [];
+  }
+
+  function animateCount(block, el) {
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    if (reduceMotion) { el.textContent = target + suffix; return; }
+    const duration = 900 * T;
+    const start = performance.now();
+    function tick(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (t < 1) track(block, requestAnimationFrame(tick));
+    }
+    track(block, requestAnimationFrame(tick));
+  }
+
+  function crossfadeText(block, el, newText, holdMs) {
+    if (reduceMotion) { el.textContent = newText; return; }
+    el.style.opacity = 0;
+    track(block, setTimeout(() => {
+      el.textContent = newText;
+      el.style.opacity = 1;
+    }, (holdMs || 200) * T));
+  }
+
+  function animateBar(block, fillEl, numEl) {
+    const start = parseFloat(fillEl.dataset.start);
+    const target = parseFloat(fillEl.dataset.targetW);
+    if (reduceMotion) {
+      fillEl.style.setProperty('--w', target + '%');
+      if (numEl) numEl.textContent = target + '%';
+      return;
+    }
+    fillEl.style.setProperty('--w', target + '%');
+    const duration = 1000 * T;
+    const t0 = performance.now();
+    function tick(now) {
+      const t = Math.min((now - t0) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      if (numEl) numEl.textContent = Math.round(start + (target - start) * eased) + '%';
+      if (t < 1) track(block, requestAnimationFrame(tick));
+    }
+    track(block, requestAnimationFrame(tick));
+  }
+
+  // ── Phase 1 — Visa Path Finder: one scene, options considered one by
+  // one → settle on A with checkmark + "Best match" tag, B/C dimmed
+  function resetPhase1(block) {
+    block.querySelectorAll('.mock-geo__node').forEach(n => {
+      n.classList.remove('mock-geo__node--active', 'mock-geo__node--dim', 'mock-geo__node--considering');
+    });
+  }
+  function runPhase1(block) {
+    const nodes = Array.from(block.querySelectorAll('.mock-geo__node'));
+
+    // sequentially "consider" each node before deciding
+    const considerOrder = nodes; // A, B, C in DOM order
+    const CONSIDER_START = 400;
+    const CONSIDER_STEP = 500;
+    considerOrder.forEach((node, i) => {
+      const delay = (CONSIDER_START + i * CONSIDER_STEP) * T;
+      track(block, setTimeout(() => {
+        considerOrder.forEach(n => n.classList.remove('mock-geo__node--considering'));
+        node.classList.add('mock-geo__node--considering');
+      }, delay));
+    });
+
+    track(block, setTimeout(() => {
+      const active = block.querySelector('[data-option="A"]');
+      const dims = block.querySelectorAll('[data-option="B"], [data-option="C"]');
+      nodes.forEach(n => n.classList.remove('mock-geo__node--considering'));
+      active.classList.add('mock-geo__node--active');
+      dims.forEach(n => n.classList.add('mock-geo__node--dim'));
+    }, (CONSIDER_START + considerOrder.length * CONSIDER_STEP + 150) * T));
+  }
+
+  // ── Phase 2a/2b — doc rows: pending/queued → done one at a time, one stays "in progress"
+  function resetPhase2(block) {
+    block.querySelectorAll('.mock-badge').forEach(badge => {
+      badge.classList.remove('is-swapping', 'is-inprogress');
+      if (badge.dataset.pendingText) {
+        badge.textContent = badge.dataset.pendingText;
+        badge.classList.add('mock-badge--pending');
+      } else if (badge.dataset.target) {
+        badge.textContent = '0' + (badge.dataset.suffix || '');
+      }
+    });
+  }
+  function runPhase2(block) {
+    const rows = block.querySelectorAll('.mock-doc-row');
+    rows.forEach((row, i) => {
+      const badge = row.querySelector('.mock-badge');
+      if (!badge) return;
+      const delay = (550 + i * 420) * T;
+      if (badge.dataset.doneText) {
+        track(block, setTimeout(() => {
+          badge.classList.add('is-swapping');
+          track(block, setTimeout(() => {
+            badge.textContent = badge.dataset.doneText;
+            badge.classList.remove('mock-badge--pending', 'is-swapping');
+          }, 180 * T));
+        }, delay));
+      } else if (badge.dataset.progressText) {
+        track(block, setTimeout(() => {
+          badge.classList.add('is-swapping');
+          track(block, setTimeout(() => {
+            badge.textContent = badge.dataset.progressText;
+            badge.classList.remove('mock-badge--pending', 'is-swapping');
+            badge.classList.add('is-inprogress');
+          }, 180 * T));
+        }, delay));
+      } else if (badge.dataset.target) {
+        track(block, setTimeout(() => animateCount(block, badge), delay));
+      }
+    });
+  }
+
+  // ── Phase 3a — bars rise from today's baseline to the scored value
+  function resetPhase3(block) {
+    block.querySelectorAll('.mock-bar-row').forEach(row => {
+      const fill = row.querySelector('.mock-bar-fill');
+      const num = row.querySelector('span[data-target]');
+      fill.style.setProperty('--w', fill.dataset.start + '%');
+      if (num) num.textContent = num.dataset.start + '%';
+    });
+  }
+  function runPhase3(block) {
+    block.querySelectorAll('.mock-bar-row').forEach((row, i) => {
+      const fill = row.querySelector('.mock-bar-fill');
+      const num = row.querySelector('span[data-target]');
+      track(block, setTimeout(() => animateBar(block, fill, num), (500 + i * 220) * T));
+    });
+  }
+
+  // ── Phase 4 — spotlight scans across tiles, settles on the selected one, which starts "playing"
+  function resetPhase4(block) {
+    block.querySelectorAll('.mock-video-tile').forEach(t => t.classList.remove('is-spotlit', 'is-playing'));
+  }
+  function runPhase4(block) {
+    const tiles = Array.from(block.querySelectorAll('.mock-video-tile'));
+    tiles.forEach((tile, i) => {
+      track(block, setTimeout(() => {
+        tiles.forEach(t => t.classList.remove('is-spotlit'));
+        tile.classList.add('is-spotlit');
+      }, (500 + i * 180) * T));
+    });
+    const selected = block.querySelector('.mock-video-tile[data-selected]');
+    track(block, setTimeout(() => {
+      tiles.forEach(t => t.classList.remove('is-spotlit'));
+      if (selected) selected.classList.add('is-spotlit', 'is-playing');
+    }, (500 + tiles.length * 180 + 100) * T));
+  }
+
+  // ── Phase 5 — checklist: pending dash → checked, one row at a time; last stays pending, pulsing
+  function resetPhase5(block) {
+    block.querySelectorAll('.mock-check').forEach(check => {
+      check.classList.remove('is-checking', 'is-active-pulse');
+      check.classList.add('mock-check--pending');
+    });
+  }
+  function runPhase5(block) {
+    const rows = block.querySelectorAll('.mock-check-row');
+    rows.forEach((row, i) => {
+      const check = row.querySelector('.mock-check');
+      const isLast = i === rows.length - 1;
+      const delay = (500 + i * 380) * T;
+      if (isLast) {
+        track(block, setTimeout(() => check.classList.add('is-active-pulse'), delay));
+        return;
+      }
+      track(block, setTimeout(() => {
+        check.classList.add('is-checking');
+        track(block, setTimeout(() => {
+          check.classList.remove('mock-check--pending', 'is-checking');
+        }, 160 * T));
+      }, delay));
+    });
+  }
+
+  const phases = {
+    '1':  { reset: resetPhase1, run: runPhase1, cycle: 2600 * T },
+    '2a': { reset: resetPhase2, run: runPhase2, cycle: 2600 * T },
+    '3a': { reset: resetPhase3, run: runPhase3, cycle: 3200 * T },
+    '4':  { reset: resetPhase4, run: runPhase4, cycle: 4800 * T },
+    '5':  { reset: resetPhase5, run: runPhase5, cycle: 3000 * T },
+  };
+
+  function startLoop(block, phase) {
+    if (block._interval) return; // already looping
+    function cycle() {
+      clearTracked(block);
+      phase.reset(block);
+      track(block, setTimeout(() => phase.run(block), 60));
+    }
+    cycle();
+    block._interval = setInterval(cycle, phase.cycle);
+  }
+
+  function stopLoop(block) {
+    clearInterval(block._interval);
+    block._interval = null;
+    clearTracked(block);
+  }
+
+  const phaseObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const block = entry.target;
+      const phase = phases[block.dataset.phase];
+      if (!phase) return;
+      if (entry.isIntersecting) {
+        block.classList.add('is-inview');
+        startLoop(block, phase);
+      } else {
+        block.classList.remove('is-inview');
+        stopLoop(block);
+        phase.reset(block);
+      }
+    });
+  }, { threshold: 0.35 });
+
+  phaseBlocks.forEach(block => phaseObserver.observe(block));
+})();
+
+document.querySelectorAll('.card, .process-step, .criterion, .testimonial').forEach((el, i) => {
   el.classList.add('fade-up');
   el.style.transitionDelay = `${(i % 4) * 0.07}s`;
   observer.observe(el);
@@ -230,4 +476,27 @@ document.querySelectorAll('.visa-tab').forEach(tab => {
     document.querySelectorAll('.visa-tab').forEach(t => t.classList.toggle('active', t === tab));
     document.querySelectorAll('.visa-panel').forEach(p => p.classList.toggle('active', p.id === `panel-${target}`));
   });
+});
+
+// ─── HERO ILLUSTRATION (static, no hover interaction) ────────
+(function () {
+  const bridgeEl = document.getElementById('heroBridge');
+  if (!bridgeEl) return;
+
+  fetch((bridgeEl.dataset.src || 'images/hero-bridge-dots.svg') + '?v=14')
+    .then(r => r.text())
+    .then(svgText => { bridgeEl.innerHTML = svgText; });
+})();
+
+// ─── STEPS TIMELINE: turn vertical mouse-wheel scrolling into horizontal scroll ──
+document.querySelectorAll('.steps-scroll').forEach(el => {
+  el.addEventListener('wheel', e => {
+    if (el.scrollWidth <= el.clientWidth + 2) return; // nothing to scroll, don't touch the page scroll
+    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    const atStart = el.scrollLeft <= 0 && e.deltaY < 0;
+    const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1 && e.deltaY > 0;
+    if (atStart || atEnd) return;
+    e.preventDefault();
+    el.scrollLeft += e.deltaY;
+  }, { passive: false });
 });

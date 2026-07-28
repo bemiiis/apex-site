@@ -3,24 +3,617 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Apex helps talented professionals, founders, and creators secure O-1A, O-1B, and EB-1A extraordinary ability visas to build their future in the United States.">
+  <meta name="description" content="Apex is a guided AI platform that helps founders, engineers, and creatives assemble a complete O-1, EB-1A, or EB-2 NIW petition — for a fraction of what attorneys charge.">
   <title>Apex — Extraordinary Ability Visas</title>
   <meta property="og:title" content="Apex — Extraordinary Ability Visas">
-  <meta property="og:description" content="Apex helps talented professionals, founders, and creators secure O-1A, O-1B, and EB-1A extraordinary ability visas to build their future in the United States.">
+  <meta property="og:description" content="Your talent visa case, built to win. A guided AI platform for O-1, EB-1A, and EB-2 NIW petitions.">
   <meta property="og:image" content="https://runapex.co/images/apex-logo-black.png">
   <meta property="og:url" content="https://runapex.co">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:image" content="https://runapex.co/images/apex-logo-black.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" href="images/favicon-dark.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap">
+  <link rel="stylesheet" href="styles.css?v=139">
+  <style>
+    /* checkmark bullets, matches pricing__list elsewhere on the site */
+    .pricing__list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--black);
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .pricing__list li { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 14px; color: var(--black); }
+
+    /* eligibility / demo blocks */
+    .platform-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      max-width: 640px;
+      margin-inline: auto;
+      padding: 56px 40px;
+      background: var(--milk);
+      border-radius: var(--radius-xl);
+    }
+    .platform-panel p { color: var(--gray-1); line-height: 1.65; }
+    .platform-panel small { color: var(--gray-1); font-size: 13px; }
+
+    .platform-screenshot {
+      width: 100%;
+      max-width: none;
+      aspect-ratio: 16 / 9;
+      margin-inline: auto;
+      background: var(--milk);
+      border: 2px solid var(--blue);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      animation: platform-border-glow 3s ease-in-out infinite;
+    }
+    @keyframes platform-border-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,87,255,.25); border-color: var(--blue); }
+      50%      { box-shadow: 0 0 28px 4px rgba(0,87,255,.35); border-color: #3d7dff; }
+    }
+    .platform-screenshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .platform-page main .sec-title {
+      text-align: center;
+      margin-inline: auto;
+      max-width: 640px;
+    }
+
+    /* ── FEATURES block: layout/visual CSS cleared, rebuilding from scratch.
+       Animation logic below (state-machine transitions/keyframes driven by
+       script.js) is kept — only the card/grid/mockup visual styling was removed. */
+    .phase-block { display: block; }
+    .phase-block__standalone-title { margin-bottom: 12px; }
+    .phase-block__standalone-text { margin-bottom: 0; }
+    #features .container { padding-inline: 12px; padding-block: 12px; }
+    .feature-card {
+      position: relative;
+      background: var(--milk);
+      padding: 32px;
+      border-radius: 20px;
+      height: 400px;
+      border: 1px solid var(--gray-2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .phase-visual {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .phase-visual > .mock-panel { display: flex; flex-direction: column; }
+    .phase-visual::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(253,252,251,0), var(--milk));
+      pointer-events: none;
+    }
+    .feature-card--sm { height: 360px; }
+    .features-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .features-row__vdivider {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--gray-2);
+      z-index: 2;
+    }
+    .features-row__vdivider::before,
+    .features-row__vdivider::after {
+      content: none;
+      position: absolute;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      transform: translateX(-50%);
+      background:
+        linear-gradient(#111, #111) center / 1px 7px no-repeat,
+        linear-gradient(#111, #111) center / 7px 1px no-repeat;
+      z-index: 60;
+    }
+    .features-row__vdivider::before { top: -3.5px; }
+    .features-row__vdivider::after { bottom: -3.5px; }
+    .features-row--trio { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) {
+      .features-row--trio { grid-template-columns: repeat(2, 1fr); }
+      .features-row__vdivider { display: none; }
+    }
+    @media (max-width: 640px) {
+      .features-row, .features-row--trio { grid-template-columns: 1fr; }
+    }
+    .pricing-cards--trio { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) {
+      .pricing-cards--trio { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .pricing-cards--trio { grid-template-columns: 1fr; }
+    }
+
+    /* Phase 1 — pill row: three visa options, one lights up blue as the match */
+    .mock-geo {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .mock-geo__line { display: none; }
+    .mock-geo__node {
+      position: relative;
+      padding: 9px 18px;
+      border-radius: 100px;
+      background: var(--white);
+      border: 1.5px solid var(--gray-2);
+      transition: background .35s ease, border-color .35s ease, opacity .35s ease;
+    }
+    .mock-geo__label {
+      font-size: 13px;
+      color: var(--gray-1);
+      white-space: nowrap;
+      transition: color .35s ease;
+    }
+    .mock-geo__node--considering { border-color: var(--black); }
+    .mock-geo__node--active {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+    .mock-geo__node--active .mock-geo__label { color: var(--white); font-weight: 500; }
+    .mock-geo__node--dim { opacity: .4; }
+
+    /* mockup components shared across the 6 illustrations */
+    .mock-panel {
+      width: 100%;
+      background: none;
+      padding: 0;
+    }
+    .mock-panel__label { font-size: 14px; color: var(--gray-1); margin-bottom: 20px; }
+    .mock-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--gray-2);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray-1);
+    }
+    .mock-toolbar svg { flex-shrink: 0; color: var(--gray-1); }
+    .mock-file-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--black);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-card);
+    }
+    .mock-file-row svg { flex-shrink: 0; color: var(--gray-1); }
+    .mock-file-row span:first-of-type { flex: 1; }
+    .mock-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 20px;
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .mock-option__letter {
+      width: 24px; height: 24px;
+      border-radius: var(--radius-sm);
+      background: #EFEFEF;
+      color: var(--gray-1);
+      font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mock-bars-panel {
+      background: var(--white);
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-card);
+    }
+    .mock-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 12px; color: var(--gray-1); }
+    .mock-bar-row:last-child { margin-bottom: 0; }
+    .mock-bar-row span:first-child { width: 92px; flex-shrink: 0; }
+    .mock-bar-track { flex: 1; height: 6px; background: #EFEFEF; border-radius: 4px; overflow: hidden; }
+    .mock-bar-fill { height: 100%; background: var(--blue); border-radius: 4px; }
+    .mock-bar-row span:last-child { width: 32px; text-align: right; color: var(--black); font-weight: 500; }
+
+    .mock-doc-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid var(--gray-2); font-size: 13px;
+    }
+    .mock-doc-row:last-child { border-bottom: none; }
+    .mock-quote {
+      background: var(--white);
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--gray-1);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-card);
+    }
+    .mock-quote strong { color: var(--black); font-weight: 500; }
+    .mock-badge {
+      font-size: 11px; padding: 3px 9px; border-radius: var(--radius-sm);
+      background: rgba(0,87,255,.1); color: var(--blue); font-weight: 500;
+    }
+    .mock-badge--done { background: #EFEFEF; color: var(--gray-1); }
+
+    .mock-video-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; width: 100%; }
+    .mock-video-tile {
+      background: var(--white);
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex; flex-direction: column; gap: 10px;
+      box-shadow: var(--shadow-card);
+    }
+    .mock-video-tile__label {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(0,87,255,.08);
+      padding: 3px 7px;
+      border-radius: var(--radius-sm);
+    }
+    .mock-video-tile__lines { display: flex; flex-direction: column; gap: 6px; }
+    .mock-video-tile__lines span { display: block; height: 5px; border-radius: 3px; background: #EFEFEF; }
+    .mock-video-tile__lines span:nth-child(2) { width: 80%; }
+    .mock-video-tile__lines span:nth-child(3) { width: 55%; }
+
+    .mock-select {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px;
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      color: var(--gray-1);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-card);
+    }
+    .mock-select strong { color: var(--black); font-weight: 500; }
+    .mock-select svg { color: var(--gray-1); flex-shrink: 0; }
+    .mock-check-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 13px; }
+    .mock-check {
+      width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
+      background: var(--black);
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center;
+    }
+
+    /* ─── PHASE SCENES (scroll-triggered, one-shot state-machine per block) ─── */
+    /* Every phase-block starts in a "before" state and a JS timeline (script.js)
+       mutates classes/text at staged delays to show an actual process, not just a reveal. */
+
+    .mock-option, .mock-doc-row, .mock-video-tile, .mock-check-row {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .phase-block.is-inview .mock-option,
+    .phase-block.is-inview .mock-doc-row,
+    .phase-block.is-inview .mock-video-tile,
+    .phase-block.is-inview .mock-check-row { opacity: 1; transform: translateY(0); }
+    .mock-option:nth-child(2), .mock-doc-row:nth-child(2), .mock-check-row:nth-child(2) { transition-delay: .08s; }
+    .mock-option:nth-child(3), .mock-doc-row:nth-child(3), .mock-check-row:nth-child(3) { transition-delay: .16s; }
+    .mock-doc-row:nth-child(4), .mock-check-row:nth-child(4) { transition-delay: .24s; }
+    .mock-video-tile { transform: scale(.92) translateY(0); }
+    .phase-block.is-inview .mock-video-tile { transform: scale(1); }
+    .mock-video-tile:nth-child(2) { transition-delay: .05s; }
+    .mock-video-tile:nth-child(3) { transition-delay: .1s; }
+
+    /* Phase 1 — scan-line sweeps the panel, options get considered one by one,
+       then settle: A highlighted + checkmark + "Best match" tag, B/C dimmed. */
+    .mock-panel { position: relative; }
+    .mock-scan-line {
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue) 50%, transparent);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .mock-scan-line.is-active { animation: scan-sweep 1.6s cubic-bezier(.4,0,.6,1); }
+    @keyframes scan-sweep {
+      0% { top: 0; opacity: 0; }
+      8% { opacity: 1; }
+      92% { opacity: 1; }
+      100% { top: calc(100% - 2px); opacity: 0; }
+    }
+
+    .mock-panel__label { transition: opacity .2s ease; margin-bottom: 16px; }
+
+    /* resume mockup, A4 proportions (210:297), sized as its own page */
+    .mock-cv-doc {
+      position: relative;
+      width: 100%;
+      max-width: 155px;
+      aspect-ratio: 210 / 297;
+      margin-inline: auto;
+      box-sizing: border-box;
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      overflow: hidden;
+      transition: opacity .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
+    }
+    .mock-cv-doc__header { font-size: 12px; color: var(--gray-1); margin-bottom: 2px; }
+    .mock-cv-doc__line { height: 8px; border-radius: 4px; background: #EFEFEF; flex-shrink: 0; }
+    .mock-cv-doc.is-leaving { opacity: 0; transform: translateX(-24px); }
+
+    .mock-option {
+      transition: opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1),
+                  border-color .25s ease, background .25s ease;
+    }
+    .mock-option.is-hidden { opacity: 0 !important; transform: translateX(18px) !important; }
+    .mock-option__letter { transition: background .25s ease, color .25s ease; }
+    .mock-option--considering { border-color: var(--gray-1); }
+    .mock-option--considering .mock-option__letter { background: var(--black); color: var(--white); }
+    .mock-option--active { border-color: var(--blue); }
+    .mock-option--active .mock-option__letter { background: var(--blue); color: var(--white); }
+    .mock-option--dim { opacity: .55 !important; }
+    .mock-option__best-tag {
+      display: inline-block;
+      margin-left: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--blue);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity .3s cubic-bezier(.16,1,.3,1), transform .3s cubic-bezier(.16,1,.3,1);
+    }
+    .mock-option__best-tag.is-shown { opacity: 1; transform: translateX(0); }
+    @keyframes option-select-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0,87,255,.35); }
+      100% { box-shadow: 0 0 0 8px rgba(0,87,255,0); }
+    }
+    .mock-option--active.is-pulsing {
+      animation: option-select-pulse .8s cubic-bezier(.16,1,.3,1) 1 both;
+    }
+
+    /* Phase 2a/2b — badges swap state: pending/queued → done/complete,
+       one item stays "in progress" (real async feel). */
+    .mock-badge {
+      display: inline-block;
+      transition: opacity .2s ease, background .25s ease, color .25s ease, transform .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .mock-badge--pending { background: #EFEFEF; color: var(--gray-1); }
+    .mock-badge.is-swapping { opacity: 0; transform: scale(.8); }
+    @keyframes badge-progress-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+    .mock-badge.is-inprogress {
+      background: rgba(0,87,255,.1); color: var(--blue);
+      animation: badge-progress-pulse 1.3s ease-in-out infinite;
+    }
+
+    /* Phase 3a — bars start at a lower baseline, animate up to the real
+       score once the block is scored (before/after improvement). */
+    .mock-bar-fill { width: var(--w); transition: width 1.6s cubic-bezier(.16,1,.3,1); }
+    .mock-bar-row span:last-child { transition: color .2s ease; }
+
+    /* Phase 4 — a "spotlight" scans across tiles, then settles on the selected one */
+    .mock-video-tile { position: relative; transition: opacity .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
+    .mock-video-tile.is-spotlit { box-shadow: 0 0 0 2px var(--blue); }
+
+    /* Phase 5 — checklist rows swap pending (dash) → checked one at a time;
+       the current/last item stays pending with a soft "working on it" pulse. */
+    .mock-check {
+      transition: background .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+    }
+    .mock-check--pending { background: #EFEFEF; background-image: none; }
+    .mock-check.is-checking { transform: scale(.7); }
+    @keyframes check-current-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(107,114,128,.25); }
+      50% { box-shadow: 0 0 0 4px rgba(107,114,128,0); }
+    }
+    .mock-check--current.is-active-pulse {
+      animation: check-current-pulse 1.4s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mock-option, .mock-doc-row, .mock-bar-fill, .mock-video-tile,
+      .mock-check-row, .mock-check, .mock-badge, .mock-option__best-tag, .mock-cv-doc {
+        transition: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* how it works */
+    .platform-steps {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--gray-2);
+    }
+    .platform-step {
+      display: flex;
+      gap: 24px;
+      align-items: baseline;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .platform-step__num {
+      font-size: 13px;
+      color: var(--gray-1);
+      min-width: 28px;
+    }
+    .platform-step__text { font-size: 16px; color: var(--black); line-height: 1.5; }
+
+    /* why apex */
+    .platform-why {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .platform-why__vdivider {
+      position: absolute;
+      top: -12px;
+      bottom: -12px;
+      width: 1px;
+      background: rgba(255,255,255,.12);
+      z-index: 2;
+    }
+    .platform-why__vdivider:nth-child(1) { left: calc(33.333% - 4px); }
+    .platform-why__vdivider:nth-child(2) { left: calc(66.666% + 4px); }
+    .platform-why__vdivider::before,
+    .platform-why__vdivider::after {
+      content: none;
+      position: absolute;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      transform: translateX(-50%);
+      background:
+        linear-gradient(#fff, #fff) center / 1px 7px no-repeat,
+        linear-gradient(#fff, #fff) center / 7px 1px no-repeat;
+      z-index: 60;
+    }
+    .platform-why__vdivider::before { top: -3.5px; }
+    .platform-why__vdivider::after { bottom: -3.5px; }
+    @media (max-width: 900px) {
+      .platform-why__vdivider { display: none; }
+    }
+    .pricing-vdivider:nth-child(1) { left: calc(33.333% - 4px); }
+    .pricing-vdivider:nth-child(2) { left: calc(66.666% + 4px); }
+    .platform-why__item {
+      position: relative;
+      padding: 32px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+    }
+    .section--dark .pricing-card p,
+    .section--dark .pricing-card li { color: rgba(255,255,255,.65); }
+    .platform-why__icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-md);
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .platform-why__item h3 { font-size: 16px; font-weight: 400; margin-bottom: 8px; }
+    .platform-why__item p { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.6; }
+
+    @media (max-width: 900px) {
+      .platform-why { grid-template-columns: 1fr; }
+    }
+
+    /* skyline illustration is much denser than the bridge — needs its own
+       subtler treatment so it doesn't overwhelm the hero text/buttons */
+    #heroBridge {
+      top: auto;
+      bottom: -20px;
+      height: 55%;
+      opacity: .55;
+    }
+
+
+    /* FAQ as cards */
+    #faq .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    #faq .faq__item {
+      margin-inline: 0;
+      padding-inline: 0;
+      padding: 16px;
+      background: var(--milk);
+      border: 1px solid var(--gray-2);
+      border-radius: 12px;
+    }
+    #faq .faq__q { padding: 0; }
+    #faq .faq__item.open .faq__a { max-height: 400px; }
+    #faq .faq__a > p { padding-top: 12px; padding-bottom: 0; }
+
+    /* FINAL CTA */
+    .final-cta-card {
+      background: var(--black);
+      border-radius: 20px;
+      padding: 64px 48px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    .final-cta-card__text { flex: 1; min-width: 0; }
+    .final-cta-card__desc {
+      color: rgba(255,255,255,.55);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 420px;
+      margin-bottom: 32px;
+    }
+    .final-cta-card__visual { flex: 1; min-width: 0; }
+    @media (max-width: 900px) {
+      .final-cta-card { flex-direction: column; text-align: left; padding: 40px 24px; }
+      .final-cta-card__visual { display: none; }
+    }
+  </style>
 </head>
-<body>
+<body class="platform-page">
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -29,12 +622,10 @@
         <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
       </a>
       <nav class="nav__links">
-        <a href="/#visas">Visas</a>
-        <a href="/#pricing">Pricing</a>
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
         <a href="/resources.html">Resources</a>
-        <a href="/scout.html">Scout</a>
-        <a href="/company.html">Company</a>
-      
+        <a href="/referrals.html">Referrals</a>
       </nav>
       <div class="nav__actions">
         <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
@@ -45,12 +636,10 @@
     </div>
     <div class="mobile-menu" id="mobileMenu">
       <nav class="mobile-menu__links">
-        <a href="/#visas">Visas</a>
-        <a href="/#pricing">Pricing</a>
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
         <a href="/resources.html">Resources</a>
-        <a href="/scout.html">Scout</a>
-        <a href="/company.html">Company</a>
-      
+        <a href="/referrals.html">Referrals</a>
       </nav>
       <div class="mobile-menu__bottom">
         <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
@@ -62,482 +651,413 @@
 
     <!-- HERO -->
     <section class="hero">
+      <div id="heroBridge" class="hero__bridge" data-src="images/hero-manhattan-dots.svg" aria-hidden="true"></div>
       <div class="container hero__inner">
-        <h1 class="hero__title">
-          <span data-i18n="hero.heading_1">You're already extraordinary.</span><br>
-          <span data-i18n="hero.heading_2">Let's prove it to US immigration.</span>
-        </h1>
-        <p class="hero__sub" data-i18n="hero.subtitle">The talent is already there. We help you recognize it, package it, and turn it into a visa.</p>
-        <div class="hero__ctas">
-          <a href="#process" class="btn btn--outline btn--lg" data-i18n="hero.cta_secondary">See how it works</a>
-          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--lg" data-i18n="hero.cta_primary">Book a free call</a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- WHO -->
-    <section class="section" id="who">
-      <div class="container">
-        <h2 class="sec-title"><span class="text-muted">Most of our clients didn't think they'd qualify,<br></span>and they were wrong.</h2>
-        <div class="who-cards">
-          <div class="who-card">
-            <div class="who-card__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-            </div>
-            <h3 data-i18n="who.c1_title">Founders</h3>
-            <p data-i18n="who.c1_desc">Venture-backed or bootstrapped. We know how to prove your critical role using traction, pitch decks, and investor backing.</p>
-          </div>
-          <div class="who-card">
-            <div class="who-card__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            </div>
-            <h3 data-i18n="who.c2_title">Engineers</h3>
-            <p data-i18n="who.c2_desc">AI/ML, infra, and fullstack. We translate your code, system architecture, and core product contributions into legal evidence.</p>
-          </div>
-          <div class="who-card">
-            <div class="who-card__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            </div>
-            <h3 data-i18n="who.c3_title">Researchers</h3>
-            <p data-i18n="who.c3_desc">Biotech, AI, and academia. We frame your citations, peer reviews, and papers through their real-world commercial impact.</p>
-          </div>
-          <div class="who-card">
-            <div class="who-card__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-            </div>
-            <h3 data-i18n="who.c4_title">Designers & Creators</h3>
-            <p data-i18n="who.c4_desc">Product, UI/UX, and brand directors. We package your design systems, reach, and industry awards into a compelling petition.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FRAMEWORK -->
-    <section class="section" id="framework">
-      <div class="container">
-        <div class="pullquote">
-          <div class="pullquote__brackets">
-            <div class="pullquote__photo-wrap">
-              <img src="images/altynai.jpg" alt="Altynai B." class="pullquote__photo">
-            </div>
-          </div>
-          <blockquote class="pullquote__text">Most people undervalue what they've built. Our job is to go through everything you've done and surface what you've been underselling.</blockquote>
-          <div class="pullquote__meta">
-            <strong>Altynai B.</strong>
-            <span>Head of company · EB-1A holder</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISAS -->
-    <section class="section" id="visas">
-      <div class="container">
-        <h2 class="sec-title"><span class="text-muted">Three visas </span>for extraordinary people</h2>
-
-        <div class="visa-tabs">
-          <button class="visa-tab active" data-tab="o1a">O-1A</button>
-          <button class="visa-tab" data-tab="o1b">O-1B</button>
-          <button class="visa-tab" data-tab="eb1a">EB-1A</button>
-        </div>
-
-        <!-- O-1A -->
-        <div class="visa-panel active" id="panel-o1a">
-          <div class="visa-panel__header">
-            <div>
-              <p class="visa-panel__tag" data-i18n="services.o1a_tag">Tech · Business · Science</p>
-              <p class="visa-panel__desc" data-i18n="services.o1a_desc">The most common path for founders, engineers, and researchers. Temporary work visa, typically 3 years — renewable.</p>
-            </div>
-            <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark" data-i18n="visa.cta">Get started</a>
-          </div>
-          <div class="crit-grid">
-            <div class="crit-item"><span class="crit-num">01</span><span data-i18n="criteria.c1">Awards — Hackathons, grants, or acceptance into top-tier accelerators</span></div>
-            <div class="crit-item"><span class="crit-num">02</span><span data-i18n="criteria.c2">Membership — Exclusive tech communities, founder clubs, or expert groups</span></div>
-            <div class="crit-item"><span class="crit-num">03</span><span data-i18n="criteria.c3">Press — Articles about you or your product in specialized or major media</span></div>
-            <div class="crit-item"><span class="crit-num">04</span><span data-i18n="criteria.c4">Original contributions — An algorithm, product, or system with proven industry impact</span></div>
-            <div class="crit-item"><span class="crit-num">05</span><span data-i18n="criteria.c5">Scholarly articles — Technical papers, reviews, or docs in peer-reviewed publications</span></div>
-            <div class="crit-item"><span class="crit-num">06</span><span data-i18n="criteria.c6">Judging — Hackathon juries, PR reviews, or vetting technical projects</span></div>
-            <div class="crit-item"><span class="crit-num">07</span><span data-i18n="criteria.c7">Critical role — Lead / Founding Engineer / CTO / CEO in a distinguished organization</span></div>
-            <div class="crit-item"><span class="crit-num">08</span><span data-i18n="criteria.c8">High salary — Compensation significantly above market average for your role</span></div>
-          </div>
-        </div>
-
-        <!-- O-1B -->
-        <div class="visa-panel" id="panel-o1b">
-          <div class="visa-panel__header">
-            <div>
-              <p class="visa-panel__tag" data-i18n="services.o1b_tag">Arts · Film · Entertainment</p>
-              <p class="visa-panel__desc" data-i18n="services.o1b_desc">For directors, designers, musicians, and creators with a body of work. If your work has real recognition, you likely qualify.</p>
-            </div>
-            <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark" data-i18n="visa.cta">Get started</a>
-          </div>
-          <div class="crit-grid">
-            <div class="crit-item"><span class="crit-num">01</span><span data-i18n="o1b.c1">Lead role — Leading or starring role in a major product rollout or distinguished project</span></div>
-            <div class="crit-item"><span class="crit-num">02</span><span data-i18n="o1b.c2">Critical acclaim — Articles and case reviews about your work in major industry media</span></div>
-            <div class="crit-item"><span class="crit-num">03</span><span data-i18n="o1b.c3">Commercial success — Products you designed achieved massive adoption, top rankings, or revenue</span></div>
-            <div class="crit-item"><span class="crit-num">04</span><span data-i18n="o1b.c4">Significant recognition — Endorsements from established industry leaders</span></div>
-            <div class="crit-item"><span class="crit-num">05</span><span data-i18n="o1b.c5">High salary — Compensation substantially above average in your creative field</span></div>
-            <div class="crit-item"><span class="crit-num">06</span><span data-i18n="o1b.c6">Past achievements — Track record evidenced by critical reviews or major industry assets</span></div>
-          </div>
-        </div>
-
-        <!-- EB-1A -->
-        <div class="visa-panel" id="panel-eb1a">
-          <div class="visa-panel__header">
-            <div>
-              <p class="visa-panel__tag" data-i18n="services.eb1a_tag">Permanent Residency</p>
-              <p class="visa-panel__desc" data-i18n="services.eb1a_desc">Same extraordinary ability standard as O-1A — but permanent. No employer, no sponsor, no waiting for a visa number. You stay.</p>
-            </div>
-            <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark" data-i18n="visa.cta">Get started</a>
-          </div>
-          <div class="crit-grid">
-            <div class="crit-item"><span class="crit-num">01</span><span data-i18n="eb1a.c1">Awards — Major prizes, grants, or top placements at a national or international level</span></div>
-            <div class="crit-item"><span class="crit-num">02</span><span data-i18n="eb1a.c2">Membership — Selective associations that require outstanding achievements for entry</span></div>
-            <div class="crit-item"><span class="crit-num">03</span><span data-i18n="eb1a.c3">Press — Dedicated articles, interviews, and features about you in major media</span></div>
-            <div class="crit-item"><span class="crit-num">04</span><span data-i18n="eb1a.c4">Judging — Contest juries, hackathon judging, or reviewing peer research</span></div>
-            <div class="crit-item"><span class="crit-num">05</span><span data-i18n="eb1a.c5">Original contributions — Systems, algorithms, or patents with proven major industry impact</span></div>
-            <div class="crit-item"><span class="crit-num">06</span><span data-i18n="eb1a.c6">Scholarly articles — Analytical or technical articles in peer-reviewed publications</span></div>
-            <div class="crit-item"><span class="crit-num">07</span><span data-i18n="eb1a.c7">Critical role — Essential role in companies with a distinguished reputation</span></div>
-            <div class="crit-item"><span class="crit-num">08</span><span data-i18n="eb1a.c8">High salary — Income substantially exceeding the market average</span></div>
-            <div class="crit-item"><span class="crit-num">09</span><span data-i18n="eb1a.c9">Exhibitions — Work displayed at major scientific, artistic, or professional showcases</span></div>
-            <div class="crit-item"><span class="crit-num">10</span><span data-i18n="eb1a.c10">Commercial success — Proven results via downloads, active users, or revenue generated</span></div>
-          </div>
-        </div>
+        <h1 class="hero__title">Build your case with AI,<br>the way an officer reads it</h1>
+        <p class="hero__sub">Apex AI helps you put all your evidence on paper, from your CV to a package that's ready to file.</p>
+        <form class="hero__demo-form" style="margin-bottom:40px;" action="https://formspree.io/f/mnjewoza" method="POST">
+          <input type="email" name="email" class="hero__demo-input" placeholder="What's your email?" required>
+          <input type="hidden" name="source" value="Homepage hero">
+          <button type="submit" class="btn btn--dark btn--sm hero__demo-btn">Request a demo</button>
+        </form>
 
       </div>
     </section>
 
-    <!-- PROCESS -->
-    <section class="section" id="process">
+    <!-- DEMO (hidden for now — kept in DOM for later) -->
+    <div style="display:none;">
+    <section class="section" style="padding-bottom:180px;position:relative;">
+      <div class="cross-divider" style="bottom:80px;"></div>
+      <div class="divider-fill" style="bottom:0; height:80px;"></div>
       <div class="container">
-        <div class="split-head">
-          <div>
-            <h2 class="sec-title">Four steps.<br><span class="text-muted">You'll know where you stand at every point.</span></h2>
-          </div>
-          <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark" data-i18n="nav.cta">Get started</a>
+        <div class="platform-screenshot">
+          <img src="images/platform-screenshot.jpg" alt="Apex platform — case builder interface">
         </div>
-        <div class="who-cards">
+      </div>
+    </section>
+    </div>
 
-          <div class="who-card">
-            <div class="card-visual">
-              <svg viewBox="0 0 260 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="16" y="16" width="228" height="26" rx="7" fill="#F5F4F1"/>
-                <rect x="26" y="24" width="44" height="5" rx="2.5" fill="#E2E1DD"/>
-                <rect x="190" y="22" width="40" height="16" rx="8" fill="#ECEAE6"/>
-                <rect x="16" y="50" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="52" y="50" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="88" y="50" width="30" height="22" rx="5" fill="#ECEAE6" stroke="#D9D8D4" stroke-width=".75"/>
-                <rect x="124" y="50" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="160" y="50" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="196" y="50" width="48" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="16" y="78" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="52" y="78" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="88" y="78" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="124" y="78" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="160" y="78" width="30" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="196" y="78" width="48" height="22" rx="5" fill="#F5F4F1"/>
-                <rect x="16" y="106" width="30" height="14" rx="5" fill="#F5F4F1"/>
-                <rect x="52" y="106" width="30" height="14" rx="5" fill="#F5F4F1"/>
-                <rect x="88" y="106" width="30" height="14" rx="5" fill="#F5F4F1"/>
-              </svg>
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how-it-works" style="padding-bottom:180px;position:relative;">
+      <div class="cross-divider" style="bottom:80px;"></div>
+      <div class="divider-fill" style="bottom:0; height:80px;"></div>
+      <div class="container">
+        <h2 class="sec-title" style="text-align:center;max-width:640px;margin-inline:auto;margin-bottom:40px;">Six steps from<br>your CV to filing</h2>
+        <div class="steps-scroll">
+          <div class="steps-track">
+            <div class="step-col">
+              <div class="step-col__badge">Step 1</div>
+              <div class="step-col__line"><span class="step-col__dot"></span></div>
+              <div class="step-card">
+                <div class="step-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                <h3>Check your eligibility</h3>
+                <p>A few quick questions tell you which path fits and how strong you are today.</p>
+              </div>
             </div>
-<h3 data-i18n="process.step_1_title">Qualification Call (30 min)</h3>
-            <p data-i18n="process.step_1_desc">We look honestly at your background and tell you whether you have a case. If you need more work, we give you a clear roadmap.</p>
-          </div>
-
-          <div class="who-card">
-            <div class="card-visual">
-              <svg viewBox="0 0 260 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="16" y="16" width="228" height="22" rx="7" fill="#F5F4F1"/>
-                <rect x="26" y="23" width="72" height="5" rx="2.5" fill="#E2E1DD"/>
-                <rect x="196" y="21" width="36" height="16" rx="8" fill="#F5F4F1" stroke="#E2E1DD" stroke-width=".75"/>
-                <rect x="16" y="46" width="6" height="6" rx="1.5" fill="#D9D8D4"/>
-                <rect x="28" y="47" width="108" height="4" rx="2" fill="#ECEAE6"/>
-                <rect x="16" y="59" width="6" height="6" rx="1.5" fill="#D9D8D4" stroke="#C8C7C3" stroke-width=".75"/>
-                <rect x="28" y="60" width="88" height="4" rx="2" fill="#D9D8D4"/>
-                <rect x="16" y="72" width="6" height="6" rx="1.5" fill="#ECEAE6"/>
-                <rect x="28" y="73" width="124" height="4" rx="2" fill="#ECEAE6"/>
-                <rect x="16" y="85" width="6" height="6" rx="1.5" fill="#D9D8D4" stroke="#C8C7C3" stroke-width=".75"/>
-                <rect x="28" y="86" width="76" height="4" rx="2" fill="#D9D8D4"/>
-                <rect x="16" y="98" width="6" height="6" rx="1.5" fill="#ECEAE6"/>
-                <rect x="28" y="99" width="100" height="4" rx="2" fill="#ECEAE6"/>
-                <rect x="16" y="111" width="6" height="6" rx="1.5" fill="#D9D8D4" stroke="#C8C7C3" stroke-width=".75"/>
-                <rect x="28" y="112" width="84" height="4" rx="2" fill="#D9D8D4"/>
-                <rect x="180" y="90" width="64" height="22" rx="11" fill="#F5F4F1" stroke="#E2E1DD" stroke-width=".75"/>
-                <rect x="193" y="98" width="38" height="4" rx="2" fill="#D9D8D4"/>
-              </svg>
+            <div class="step-col">
+              <div class="step-col__badge">Step 2</div>
+              <div class="step-col__line"><span class="step-col__dot"></span></div>
+              <div class="step-card">
+                <div class="step-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+                <h3>Upload your background</h3>
+                <p>Your CV, degrees, publications, awards, press, and memberships.</p>
+              </div>
             </div>
-<h3 data-i18n="process.step_2_title">Case Architecture (1 week)</h3>
-            <p data-i18n="process.step_2_desc">We lock in your 3 strongest criteria and design a strategy around them. You'll know the exact plan before we write a single word.</p>
-          </div>
-
-          <div class="who-card">
-            <div class="card-visual">
-              <svg viewBox="0 0 260 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="48" y="14" width="180" height="110" rx="8" fill="#F5F4F1" stroke="#E2E1DD" stroke-width=".75"/>
-                <rect x="34" y="22" width="180" height="110" rx="8" fill="#FAFAF8" stroke="#E2E1DD" stroke-width=".75"/>
-                <rect x="20" y="30" width="180" height="110" rx="8" fill="white" stroke="#E2E1DD" stroke-width=".75"/>
-                <rect x="32" y="44" width="68" height="5" rx="2.5" fill="#E2E1DD"/>
-                <rect x="32" y="56" width="156" height="4" rx="2" fill="#F0EFEB"/>
-                <rect x="32" y="66" width="128" height="4" rx="2" fill="#F0EFEB"/>
-                <rect x="32" y="76" width="144" height="4" rx="2" fill="#F0EFEB"/>
-                <rect x="32" y="90" width="68" height="5" rx="2.5" fill="#E2E1DD"/>
-                <rect x="32" y="102" width="156" height="4" rx="2" fill="#F0EFEB"/>
-                <rect x="32" y="112" width="112" height="4" rx="2" fill="#F0EFEB"/>
-              </svg>
+            <div class="step-col">
+              <div class="step-col__badge">Step 3</div>
+              <div class="step-col__line"><span class="step-col__dot"></span></div>
+              <div class="step-card">
+                <div class="step-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
+                <h3>Build your case</h3>
+                <p>AI assistants help define your endeavor and organize your evidence around each criterion.</p>
+              </div>
             </div>
-<h3 data-i18n="process.step_3_title">Content Drafting (3–6 weeks)</h3>
-            <p data-i18n="process.step_3_desc">We write the petition, draft recommendation templates, and complete all forms. You provide the facts; we build the legal argument.</p>
-          </div>
-
-          <div class="who-card">
-            <div class="card-visual">
-              <svg viewBox="0 0 260 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="16" y="22" width="228" height="5" rx="2.5" fill="#F0EFEB"/>
-                <rect x="16" y="22" width="160" height="5" rx="2.5" fill="#D9D8D4"/>
-                <circle cx="40" cy="60" r="10" fill="#F5F4F1" stroke="#D9D8D4" stroke-width=".75"/>
-                <circle cx="40" cy="60" r="4" fill="#D9D8D4"/>
-                <rect x="56" y="55" width="64" height="5" rx="2.5" fill="#E2E1DD"/>
-                <rect x="56" y="65" width="44" height="4" rx="2" fill="#ECEAE6"/>
-                <line x1="40" y1="70" x2="40" y2="85" stroke="#E2E1DD" stroke-width=".75"/>
-                <circle cx="40" cy="95" r="10" fill="#F5F4F1" stroke="#D9D8D4" stroke-width=".75"/>
-                <circle cx="40" cy="95" r="4" fill="#D9D8D4"/>
-                <rect x="56" y="90" width="80" height="5" rx="2.5" fill="#E2E1DD"/>
-                <rect x="56" y="100" width="56" height="4" rx="2" fill="#ECEAE6"/>
-                <line x1="40" y1="105" x2="40" y2="118" stroke="#ECEAE6" stroke-width=".75" stroke-dasharray="3 2"/>
-                <circle cx="40" cy="120" r="8" fill="white" stroke="#D9D8D4" stroke-width=".75"/>
-                <rect x="56" y="116" width="88" height="5" rx="2.5" fill="#ECEAE6"/>
-                <rect x="176" y="54" width="68" height="22" rx="11" fill="#F5F4F1" stroke="#E2E1DD" stroke-width=".75"/>
-                <rect x="188" y="62" width="44" height="4" rx="2" fill="#D9D8D4"/>
-              </svg>
+            <div class="step-col">
+              <div class="step-col__badge">Step 4</div>
+              <div class="step-col__line"><span class="step-col__dot"></span></div>
+              <div class="step-card">
+                <div class="step-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
+                <h3>Generate your petition</h3>
+                <p>A cover letter draft, plus a fully organized, ready-to-file exhibit package.</p>
+              </div>
             </div>
-<h3 data-i18n="process.step_4_title">Filing & Defense</h3>
-            <p data-i18n="process.step_4_desc">We file your petition and handle any RFE responses at no extra cost. We stay with you until your Approval Notice arrives.</p>
+            <div class="step-col">
+              <div class="step-col__badge">Step 5</div>
+              <div class="step-col__line"><span class="step-col__dot"></span></div>
+              <div class="step-card">
+                <div class="step-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <h3>Review and strengthen</h3>
+                <p>Run the feedback report, and have an Apex expert review it if you want.</p>
+              </div>
+            </div>
+            <div class="step-col">
+              <div class="step-col__badge">Step 6</div>
+              <div class="step-col__line"><span class="step-col__dot"></span></div>
+              <div class="step-card">
+                <div class="step-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+                <h3>File</h3>
+                <p>Complete the USCIS forms and follow our step-by-step filing guide.</p>
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
     </section>
 
-
-    <!-- BERMET QUOTE -->
-    <section class="section" id="founder-quote">
+    <!-- FEATURES: 5 PHASES, CHECKERBOARD -->
+    <section class="section" id="features" style="position:relative;padding-bottom:80px;">
+      <div class="cross-divider" style="bottom:80px;"></div>
       <div class="container">
-        <div class="pullquote">
-          <div class="pullquote__brackets">
-            <div class="pullquote__photo-wrap">
-              <img src="images/bermet.jpg" alt="Bermet D." class="pullquote__photo">
+        <h2 class="sec-title" style="text-align:center;max-width:640px;margin-inline:auto;margin-bottom:40px;">Every tool you<br>need to build your case</h2>
+      </div>
+
+      <div class="cross-divider cross-divider--flow"></div>
+
+      <!-- ROW 1: pair -->
+      <div class="container" style="position:relative;">
+        <div class="features-row__vdivider"></div>
+        <div class="features-row">
+
+          <!-- Phase 1 — Find your path -->
+          <div class="feature-card feature-card--sm phase-block" data-phase="1">
+            <div class="phase-visual">
+              <div class="mock-panel">
+                <div class="mock-toolbar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>CV Analysis</div>
+                <div class="mock-file-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>resume_2026.pdf</span><span class="mock-badge mock-badge--done">Uploaded</span></div>
+                <div class="mock-geo">
+                  <div class="mock-geo__line"></div>
+                  <div class="mock-geo__node" data-option="A"><span class="mock-geo__label">O-1A</span></div>
+                  <div class="mock-geo__node" data-option="B"><span class="mock-geo__label">EB-1A</span></div>
+                  <div class="mock-geo__node" data-option="C"><span class="mock-geo__label">EB-2 NIW</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="phase-block__text">
+              <h3 class="phase-block__standalone-title">Visa Path Finder</h3>
+            <p class="phase-block__standalone-text">Upload your CV to see which path fits (O-1, EB-1A, or EB-2 NIW) and how to strengthen your profile.</p>
             </div>
           </div>
-          <blockquote class="pullquote__text">I went through this process myself. I know what it feels like to have no idea if you qualify — and what it takes to build a case that actually wins.</blockquote>
-          <div class="pullquote__meta">
-            <strong>Bermet D.</strong>
-            <span>Founder of Apex · O-1A visa holder</span>
+
+          <!-- Phase 2a — Write your case -->
+          <div class="feature-card feature-card--sm phase-block" data-phase="2a">
+            <div class="phase-visual">
+              <div class="mock-panel">
+                <div class="mock-toolbar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>Cover Letter</div>
+                <div class="mock-quote"><strong>Apex identified 3 original contributions</strong> from your work and the language USCIS looks for in Criterion 4.</div>
+                <div class="mock-doc-row"><span>Overall draft</span><span class="mock-badge" data-target="85" data-suffix="% done">0% done</span></div>
+              </div>
+            </div>
+            <div class="phase-block__text">
+              <h3 class="phase-block__standalone-title">Write your case</h3>
+            <p class="phase-block__standalone-text">The AI drafts ~80% of your cover letter on the right legal framework, and helps with the hardest parts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cross-divider cross-divider--flow"></div>
+
+      <!-- ROW 3: trio -->
+      <div class="container" style="position:relative;">
+        <div class="features-row__vdivider" style="left:33.333%;"></div>
+        <div class="features-row__vdivider" style="left:66.666%;"></div>
+        <div class="features-row features-row--trio">
+
+          <!-- Phase 3a — Check and strengthen -->
+          <div class="feature-card phase-block" data-phase="3a">
+            <div class="phase-visual">
+              <div class="mock-panel">
+                <div class="mock-toolbar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 7.5-8 10-4.5-2.5-8-5-8-10V6z"/></svg>Profile Strength</div>
+                <div class="mock-bars-panel">
+                  <div class="mock-bar-row"><span>Awards</span><div class="mock-bar-track"><div class="mock-bar-fill" data-start="54" data-target-w="82" style="--w:54%"></div></div><span data-start="54" data-target="82" data-suffix="%">54%</span></div>
+                  <div class="mock-bar-row"><span>Press</span><div class="mock-bar-track"><div class="mock-bar-fill" data-start="38" data-target-w="61" style="--w:38%"></div></div><span data-start="38" data-target="61" data-suffix="%">38%</span></div>
+                  <div class="mock-bar-row"><span>Judging</span><div class="mock-bar-track"><div class="mock-bar-fill" data-start="20" data-target-w="44" style="--w:20%"></div></div><span data-start="20" data-target="44" data-suffix="%">20%</span></div>
+                  <div class="mock-bar-row"><span>Original work</span><div class="mock-bar-track"><div class="mock-bar-fill" data-start="65" data-target-w="90" style="--w:65%"></div></div><span data-start="65" data-target="90" data-suffix="%">65%</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="phase-block__text">
+              <h3 class="phase-block__standalone-title">Check and strengthen</h3>
+            <p class="phase-block__standalone-text">The platform flags what's weak against real decisions. An Apex specialist can help. (optional)</p>
+            </div>
+          </div>
+
+          <!-- Phase 4 — Learn as you go -->
+          <div class="feature-card phase-block" data-phase="4">
+            <div class="phase-visual">
+              <div class="mock-panel">
+                <div class="mock-toolbar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Resource Library</div>
+                <div class="mock-video-grid">
+                  <div class="mock-video-tile">
+                    <span class="mock-video-tile__label">Guide</span>
+                    <div class="mock-video-tile__lines"><span></span><span></span><span></span></div>
+                  </div>
+                  <div class="mock-video-tile" data-selected="true">
+                    <span class="mock-video-tile__label">Checklist</span>
+                    <div class="mock-video-tile__lines"><span></span><span></span><span></span></div>
+                  </div>
+                  <div class="mock-video-tile">
+                    <span class="mock-video-tile__label">Template</span>
+                    <div class="mock-video-tile__lines"><span></span><span></span><span></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="phase-block__text">
+              <h3 class="phase-block__standalone-title">Learn as you go</h3>
+            <p class="phase-block__standalone-text">Lessons, guides, and templates filtered to your visa and stage, so you see only what applies.</p>
+            </div>
+          </div>
+
+          <!-- Phase 5 — File it -->
+          <div class="feature-card phase-block" data-phase="5">
+            <div class="phase-visual">
+              <div class="mock-panel">
+                <div class="mock-toolbar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Filing Checklist</div>
+                <div class="mock-select"><span>Filing method</span><strong>Standard <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-left:4px;"><path d="M1 1l4 4 4-4"/></svg></strong></div>
+                <div class="mock-check-row"><span class="mock-check mock-check--pending"></span> Form I-129 completed</div>
+                <div class="mock-check-row"><span class="mock-check mock-check--pending"></span> Exhibit package merged (1 PDF)</div>
+                <div class="mock-check-row"><span class="mock-check mock-check--pending mock-check--current"></span> Mailed to correct service center</div>
+              </div>
+            </div>
+            <div class="phase-block__text">
+              <h3 class="phase-block__standalone-title">File it</h3>
+            <p class="phase-block__standalone-text">Step by step instructions, fees, and one click that merges everything into a correctly ordered PDF.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY APEX -->
+    <section class="section section--dark" id="why" style="position:relative;padding-bottom:80px;">
+      <div class="section-frameline section-frameline--left"></div>
+      <div class="section-frameline section-frameline--right"></div>
+      <div class="cross-divider" style="bottom:80px;"></div>
+      <div class="divider-fill divider-fill--dark" style="bottom:0; height:80px;"></div>
+      <div class="container">
+        <h2 class="sec-title" style="text-align:center;max-width:640px;margin-inline:auto;margin-bottom:40px;">Why Apex works</h2>
+      </div>
+
+      <div class="cross-divider cross-divider--flow"></div>
+
+      <div class="container" style="position:relative;padding:12px;">
+        <div class="platform-why">
+          <div class="platform-why__vdivider"></div>
+          <div class="platform-why__vdivider"></div>
+          <div class="platform-why__item">
+            <div class="platform-why__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Built by people who did it</h3>
+            <p>We went through this process ourselves, on an O-1A and an EB-1A. The platform is what we learned, turned into a tool.</p>
+          </div>
+          <div class="platform-why__item">
+            <div class="platform-why__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+            <h3>Built to be read</h3>
+            <p>An officer decides your case by reading it. Your petition comes out clear, structured, and organized the way they expect.</p>
+          </div>
+          <div class="platform-why__item">
+            <div class="platform-why__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+            <h3>Every path in one place</h3>
+            <p>O-1A, O-1B, EB-1A, and EB-2 NIW. The platform adapts to whichever one fits you.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- PRICING -->
-    <section class="section" id="pricing">
+    <section class="section section--dark" id="platform-pricing" style="padding-bottom:80px;position:relative;">
+      <div class="section-frameline section-frameline--left"></div>
+      <div class="section-frameline section-frameline--right"></div>
+      <div class="cross-divider" style="bottom:80px;"></div>
+      <div class="divider-fill divider-fill--dark" style="bottom:0; height:80px;"></div>
       <div class="container">
-        <h2 class="sec-title" data-i18n="pricing.subtitle">Full service through approval</h2>
-        <div class="pricing-cards">
+        <h2 class="sec-title" style="text-align:center;max-width:640px;margin-inline:auto;margin-bottom:40px;">Do it yourself,<br>or do it with us</h2>
+      </div>
+
+      <div class="cross-divider cross-divider--flow"></div>
+
+      <div class="container" style="position:relative;padding:12px;">
+        <div class="pricing-cards pricing-cards--trio" style="position:relative;gap:24px;">
+          <div class="pricing-vdivider"></div>
+          <div class="pricing-vdivider"></div>
 
           <div class="pricing-card">
             <div class="pricing-card__header">
-              <div class="pricing-card__visa-row">
-                <span class="pricing-card__visa">O-1A</span>
-                <span class="pricing-card__or">or</span>
-                <span class="pricing-card__visa">O-1B</span>
-              </div>
-              <span class="pricing-card__tag">Sciences · Business · Arts · Film</span>
+              <span class="pricing-card__visa">Build it yourself</span>
             </div>
             <div class="pricing-card__price">
-              <span class="pricing-card__amount">$7,500</span>
-              <span class="pricing-card__period">flat fee</span>
+              <span class="pricing-card__amount">$999</span>
+              <span class="pricing-card__period">one time</span>
             </div>
-            <div class="pricing-card__split">
-              <span>$5,000 to start</span>
-              <span>$2,500 on completion</span>
-            </div>
+            <p style="font-size:14px;color:var(--gray-1);line-height:1.6;margin-bottom:16px;">You assemble your own petition, at your own pace, with every tool the platform has.</p>
             <ul class="pricing__list">
-              <li>Complete petition preparation</li>
-              <li>All forms and filings</li>
-              <li>Support letters and exhibit packages</li>
-              <li>RFE response included</li>
-              <li>Admin costs included</li>
-              <li>Support through approval</li>
+              <li>Full platform access for [6] months</li>
+              <li>All AI tools and assistants</li>
+              <li>Cover letter draft and exhibit package</li>
+              <li>[One] petition review</li>
             </ul>
             <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
           </div>
 
-          <div class="pricing-card">
+          <div class="pricing-card pricing-card--featured">
             <div class="pricing-card__header">
-              <span class="pricing-card__visa">EB-1A</span>
-              <span class="pricing-card__tag">Permanent Residency · Green Card</span>
+              <span class="pricing-card__visa">Build it with us</span>
             </div>
             <div class="pricing-card__price">
-              <span class="pricing-card__amount">$10,000</span>
-              <span class="pricing-card__period">flat fee</span>
+              <span class="pricing-card__amount">$2,499</span>
+              <span class="pricing-card__period">one time</span>
             </div>
-            <div class="pricing-card__split">
-              <span>$7,000 to start</span>
-              <span>$3,000 on completion</span>
-            </div>
+            <p style="font-size:14px;color:var(--gray-1);line-height:1.6;margin-bottom:16px;">Everything above, plus a specialist who reads your case, strengthens the weak parts, and tells you honestly when it's ready.</p>
             <ul class="pricing__list">
-              <li>Complete petition preparation</li>
-              <li>All forms and filings</li>
-              <li>Support letters and exhibit packages</li>
-              <li>RFE response included</li>
-              <li>Admin costs included</li>
-              <li>Support through approval</li>
-            </ul>
-            <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
-          </div>
-
-          <div class="pricing-card pricing-card--featured pricing-card--bundle">
-            <div class="pricing-card__header">
-              <span class="pricing-card__visa">O-1A + EB-1A</span>
-              <span class="pricing-card__tag">Visa → Green Card · Full path</span>
-            </div>
-            <div class="pricing-card__price">
-              <span class="pricing-card__amount">$12,000</span>
-              <span class="pricing-card__period">flat fee</span>
-            </div>
-            <div class="pricing-card__split">
-              <span>$8,000 to start</span>
-              <span>$4,000 on completion</span>
-            </div>
-            <ul class="pricing__list">
-              <li>Complete petition preparation</li>
-              <li>All forms and filings</li>
-              <li>Support letters and exhibit packages</li>
-              <li>RFE response included</li>
-              <li>Admin costs included</li>
-              <li>Support through approval</li>
+              <li>Everything in the self serve plan</li>
+              <li>Hands on review of your case</li>
+              <li>[Add real inclusions here]</li>
             </ul>
             <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
           </div>
 
           <div class="pricing-card">
             <div class="pricing-card__header">
-              <span class="pricing-card__visa">EB-2 NIW</span>
-              <span class="pricing-card__tag">National Interest Waiver · Green Card</span>
+              <span class="pricing-card__visa">We do it all</span>
             </div>
             <div class="pricing-card__price">
-              <span class="pricing-card__amount">$10,000</span>
-              <span class="pricing-card__period">flat fee</span>
+              <span class="pricing-card__amount">Custom</span>
+              <span class="pricing-card__period">quote</span>
             </div>
-            <div class="pricing-card__split">
-              <span>$7,000 to start</span>
-              <span>$3,000 on completion</span>
-            </div>
+            <p style="font-size:14px;color:var(--gray-1);line-height:1.6;margin-bottom:16px;">A full-service team builds and files your petition end to end. You provide the facts, we handle everything else.</p>
             <ul class="pricing__list">
-              <li>Complete petition preparation</li>
-              <li>All forms and filings</li>
-              <li>Support letters and exhibit packages</li>
-              <li>RFE response included</li>
-              <li>Admin costs included</li>
-              <li>Support through approval</li>
+              <li>Everything in the guided plan</li>
+              <li>Dedicated case manager</li>
+              <li>Full petition drafted and filed for you</li>
+              <li>[Add real inclusions here]</li>
             </ul>
-            <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+            <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Talk to us</a>
           </div>
-
         </div>
-        <p class="pricing-footer">Government filing fees are not included and vary by visa type.</p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section" id="final-cta" style="position:relative;padding-bottom:80px;">
+      <div class="cross-divider" style="bottom:80px;"></div>
+      <div class="divider-fill" style="bottom:0; height:80px;"></div>
+      <div class="container" style="padding:12px;">
+        <div class="final-cta-card">
+          <div class="final-cta-card__text">
+            <h2 class="sec-title" style="text-align:left;margin-inline:0;margin-bottom:16px;color:var(--white);">Ready to build your case?</h2>
+            <p class="final-cta-card__desc">Upload your CV, tell us which visa you're going for, and see where you stand in minutes — not weeks.</p>
+            <form class="hero__demo-form" style="margin-inline:0;" action="https://formspree.io/f/mnjewoza" method="POST">
+              <input type="email" name="email" class="hero__demo-input" placeholder="What's your email?" required>
+              <input type="hidden" name="source" value="Homepage final CTA">
+              <button type="submit" class="btn btn--light btn--sm hero__demo-btn">Request a demo</button>
+            </form>
+          </div>
+          <div class="final-cta-card__visual"><!-- illustration goes here --></div>
+        </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section" id="faq">
+    <section class="section" id="faq" style="padding-bottom:180px;position:relative;">
+      <div class="cross-divider" style="bottom:80px;"></div>
+      <div class="divider-fill" style="bottom:0; height:80px;"></div>
       <div class="container">
-        <h2 class="sec-title"><span class="text-muted">Common </span>questions</h2>
-        <div class="faq">
+        <h2 class="sec-title" style="text-align:center;max-width:640px;margin-inline:auto;margin-bottom:40px;">Common questions</h2>
+      </div>
+
+      <div class="cross-divider cross-divider--flow"></div>
+
+      <div class="container" style="padding:12px;">
+        <div class="faq-list">
           <div class="faq__item">
-            <button class="faq__q" data-i18n="faq.q1">Do I actually qualify?</button>
-            <div class="faq__a"><p data-i18n="faq.a1">Probably. Most people who come to us thinking they don't qualify, do.</p></div>
+            <button class="faq__q">Do I actually qualify?</button>
+            <div class="faq__a"><p>Most people who ask us this do better than they expect. Upload your CV and the platform will tell you honestly where you stand, and what's missing if you're not there yet.</p></div>
           </div>
           <div class="faq__item">
-            <button class="faq__q" data-i18n="faq.q2">What does $7,500 cover?</button>
-            <div class="faq__a"><p data-i18n="faq.a2">Everything. Strategy, petition writing, all forms, support letters, exhibit packages, and USCIS communication from first call through approval.</p></div>
+            <button class="faq__q">Is this legal advice?</button>
+            <div class="faq__a"><p>No. Apex is not a law firm. We give you tools, guidance, and educational material based on public government information and real case outcomes. Everything you build is yours to review, and we always recommend having a licensed immigration attorney look at your petition before you file.</p></div>
           </div>
           <div class="faq__item">
-            <button class="faq__q" data-i18n="faq.q3">Can you guarantee approval?</button>
-            <div class="faq__a"><p data-i18n="faq.a3">No one can — USCIS makes the final call. What we can tell you is that we only take cases we believe in.</p></div>
+            <button class="faq__q">Can you guarantee approval?</button>
+            <div class="faq__a"><p>No one can. Immigration decisions depend on things outside anyone's control. What we can do is make sure your case is as strong as your work deserves.</p></div>
           </div>
           <div class="faq__item">
-            <button class="faq__q" data-i18n="faq.q5">Do I need an employer to sponsor me?</button>
-            <div class="faq__a"><p data-i18n="faq.a5">For O-1A and O-1B — no traditional employer sponsor needed. For EB-1A — no sponsor required at all.</p></div>
+            <button class="faq__q">Do I need an employer to sponsor me?</button>
+            <div class="faq__a"><p>Not for EB-1A or EB-2 NIW. You petition for yourself. O-1 does require a US employer or agent, and we'll explain what that means for your situation.</p></div>
           </div>
           <div class="faq__item">
-            <button class="faq__q" data-i18n="faq.q6">What's the difference between O-1A and EB-1A?</button>
-            <div class="faq__a"><p data-i18n="faq.a6">O-1A is a temporary work visa — typically 3 years, extendable. EB-1A is a green card — permanent residency. Same criteria, different outcome.</p></div>
+            <button class="faq__q">What if I need more time?</button>
+            <div class="faq__a"><p>Access runs [6] months, which is enough for most people. If life happens, you can renew at a discount.</p></div>
           </div>
           <div class="faq__item">
-            <button class="faq__q" data-i18n="faq.q7">What if I get an RFE?</button>
-            <div class="faq__a"><p data-i18n="faq.a7">We handle it. RFE responses are included in the flat fee — no extra charge, no surprises.</p></div>
+            <button class="faq__q">What happens to my documents?</button>
+            <div class="faq__a"><p>They're used to build your petition and nothing else. We don't sell your data and we don't train AI models on your documents. Everything is encrypted, and you can delete your files or your whole account whenever you want.</p></div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- MID CTA -->
-    <section class="mid-cta">
-      <div class="container mid-cta__inner">
-        <p class="mid-cta__text">Not sure which visa fits? Book<br>a free call — we'll tell you.</p>
-        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Book a free call</a>
-      </div>
-    </section>
-
-    <!-- BOOKING FORM -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="booking">
-          <div class="booking__left">
-            <h2 class="booking__title">Book a free call</h2>
-            <p class="booking__sub">30 minutes. We'll tell you honestly whether you have a case — no pitch, no pressure.</p>
-            <div class="booking__meta">
-              <div class="booking__meta-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                30 min
-              </div>
-              <div class="booking__meta-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.17 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.08 1.1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 18.92z"/></svg>
-                Video or phone
-              </div>
-            </div>
-          </div>
-          <div class="booking__calendly">
-            <div class="calendly-inline-widget" data-url="https://calendly.com/bermet-runapex/30min?hide_landing_page_details=1&hide_gdpr_banner=1" style="min-width:300px;height:660px;"></div>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-          </div>
-        </div>
-      </div>
-    </section>
-
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer__inner">
+    <div class="container footer__inner" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
       <div class="footer__brand">
-        <a href="#" class="nav__logo footer__logo">
+        <a href="/" class="nav__logo footer__logo">
           <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
         </a>
+        <p class="footer__brand-text">Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.</p>
+        <span class="footer__meta-line">© 2026 Apex. All rights reserved.</span>
       </div>
       <div class="footer__col">
         <span class="footer__col-label">Navigation</span>
-        <a href="#visas">Visas</a>
-        <a href="#process">Process</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-        <a href="/company.html">Company</a>
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/referrals.html">Referrals</a>
       </div>
       <div class="footer__col">
-        <span class="footer__col-label">Social Media</span>
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:bermet@runapex.co">bermet@runapex.co</a>
         <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
       </div>
@@ -546,20 +1066,42 @@
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
       </div>
-      <div class="footer__col">
-        <span class="footer__col-label">Contacts</span>
-        <a href="mailto:bermet@runapex.co">bermet@runapex.co</a>
-      </div>
     </div>
-    <div class="container footer__bottom">
-      <span>© 2026 Apex. All rights reserved.</span>
-      <span>Made with love</span>
-    </div>
-    <div class="container footer__disclaimer">
-      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    <div class="footer__illustration">
+      <img src="images/hero-manhattan-dots.svg?v=14" alt="" aria-hidden="true">
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=38"></script>
+  <script>
+    document.querySelectorAll('.hero__demo-form').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            btn.textContent = 'Thanks! We\'ll be in touch';
+            form.querySelector('input[type="email"]').value = '';
+          } else {
+            btn.textContent = 'Something went wrong — try again';
+            btn.disabled = false;
+          }
+        } catch (err) {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+        setTimeout(() => { btn.textContent = originalText; btn.disabled = false; }, 4000);
+      });
+    });
+  </script>
+
 </body>
 </html>

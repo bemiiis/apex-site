@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=139">
   <style>
 
     .article-wrap {
@@ -70,7 +70,7 @@
     /* ── HEADING ── */
     .article-title {
       font-size: clamp(28px, 4vw, 44px);
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: -.03em;
       line-height: 1.1;
       padding-top: 40px;
@@ -137,7 +137,7 @@
 
     .article-section__title {
       font-size: 20px;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: -.02em;
       line-height: 1.2;
       margin-bottom: 20px;
@@ -257,12 +257,10 @@
         <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
       </a>
       <nav class="nav__links">
-        <a href="/#visas">Visas</a>
-        <a href="/#pricing">Pricing</a>
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
         <a href="/resources.html">Resources</a>
-        <a href="/scout.html">Scout</a>
-        <a href="/company.html">Company</a>
-      
+        <a href="/referrals.html">Referrals</a>
       </nav>
       <div class="nav__actions">
         <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
@@ -273,12 +271,10 @@
     </div>
     <div class="mobile-menu" id="mobileMenu">
       <nav class="mobile-menu__links">
-        <a href="/#visas">Visas</a>
-        <a href="/#pricing">Pricing</a>
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
         <a href="/resources.html">Resources</a>
-        <a href="/scout.html">Scout</a>
-        <a href="/company.html">Company</a>
-      
+        <a href="/referrals.html">Referrals</a>
       </nav>
       <div class="mobile-menu__bottom">
         <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
@@ -402,40 +398,35 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
+    <div class="container footer__inner" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
       <div class="footer__brand">
-        <a href="index.html" class="nav__logo footer__logo">
+        <a href="/" class="nav__logo footer__logo">
           <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
         </a>
+        <p class="footer__brand-text">Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.</p>
+        <span class="footer__meta-line">© 2026 Apex. All rights reserved.</span>
       </div>
       <div class="footer__col">
         <span class="footer__col-label">Navigation</span>
-        <a href="index.html#visas">Visas</a>
-        <a href="index.html#process">Process</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="resources.html">Resources</a>
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/referrals.html">Referrals</a>
       </div>
       <div class="footer__col">
-        <span class="footer__col-label">Social Media</span>
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:bermet@runapex.co">bermet@runapex.co</a>
         <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
       </div>
       <div class="footer__col">
         <span class="footer__col-label">Legal</span>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-      </div>
-      <div class="footer__col">
-        <span class="footer__col-label">Contacts</span>
-        <a href="mailto:contact@runapex.co">contact@runapex.co</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
       </div>
     </div>
-    <div class="container footer__bottom">
-      <span>© 2026 Apex. All rights reserved.</span>
-      <span>Made with love</span>
-    </div>
-    <div class="container footer__disclaimer">
-      Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.
+    <div class="footer__illustration">
+      <img src="images/hero-manhattan-dots.svg?v=14" alt="" aria-hidden="true">
     </div>
   </footer>
 

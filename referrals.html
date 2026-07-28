@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Know someone who needs a US visa? Refer them to Apex and earn $300 when they file.">
+  <title>Referral Program — Apex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="styles.css?v=139">
+  <style>
+    .hero { height: auto; padding-bottom: 40px; }
+
+    .pricing__list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--black);
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .pricing__list li { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 14px; color: var(--black); }
+
+    .scout-earn-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--gray-2);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--milk);
+    }
+    .scout-earn-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--gray-2);
+    }
+    .scout-earn-item:last-child { border-bottom: none; }
+    .scout-earn-item__label {
+      font-size: 16px;
+      color: var(--gray-1);
+    }
+    .scout-earn-item__value {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      text-align: right;
+    }
+
+    /* steps numbered grid */
+    .scout-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--gray-2);
+      margin-inline: -32px;
+    }
+    .scout-step {
+      padding: 40px 32px;
+      border-right: 1px solid var(--gray-2);
+    }
+    .scout-step:last-child { border-right: none; }
+    .scout-step__num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+    .scout-step h3 {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .scout-step p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--gray-1);
+    }
+
+
+    @media (max-width: 900px) {
+      .hero .container { flex-direction: column; align-items: stretch; text-align: center; gap: 32px; }
+      .hero .container .hero__title,
+      .hero .container .hero__sub { text-align: center; }
+      .hero .container .hero__ctas { justify-content: center; }
+    }
+
+    @media (max-width: 768px) {
+      .scout-steps { grid-template-columns: 1fr; }
+      .scout-step  { border-right: none; border-bottom: 1px solid var(--gray-2); }
+      .scout-step:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 640px) {
+      .scout-steps { margin-inline: -28px; }
+      .scout-step  { padding: 28px; }
+    }
+
+    /* FAQ as cards — see UI-RULES.md */
+    #faq .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    #faq .faq__item {
+      margin-inline: 0;
+      padding-inline: 0;
+      padding: 16px;
+      background: var(--milk);
+      border: 1px solid var(--gray-2);
+      border-radius: 12px;
+    }
+    #faq .faq__item:first-child { border-top: 1px solid var(--gray-2); }
+    #faq .faq__q { padding: 0; }
+    #faq .faq__item.open .faq__a { max-height: 400px; }
+    #faq .faq__a > p { padding-top: 12px; padding-bottom: 0; }
+
+    /* FINAL CTA */
+    .final-cta-card {
+      background: var(--black);
+      border-radius: 20px;
+      padding: 64px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .final-cta-card__title { color: var(--white); margin-bottom: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="images/apex-logo-black.png" alt="Apex" class="nav__logo-img">
+      </a>
+      <nav class="nav__links">
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/referrals.html">Referrals</a>
+      </nav>
+      <div class="nav__actions">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark btn--sm">Get started</a>
+      </div>
+      <button class="nav__burger" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-menu__links">
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/referrals.html">Referrals</a>
+      </nav>
+      <div class="mobile-menu__bottom">
+        <a href="https://calendly.com/bermet-runapex/30min" target="_blank" rel="noopener" class="btn btn--dark">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" style="height:auto;padding-top:calc(var(--nav-h) + 80px);padding-bottom:80px;">
+      <div class="container" style="display:flex;align-items:stretch;gap:64px;text-align:left;">
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <h1 class="hero__title" style="text-align:left;margin-inline:0;font-size:clamp(28px, 4vw, 44px);">Refer someone and<br>get $300 or $4,000</h1>
+            <p class="hero__sub" style="text-align:left;margin-inline:0;">You know talented people who need a US visa.<br>Introduce us, and earn when they file.</p>
+          </div>
+          <div class="hero__ctas" style="justify-content:flex-start;margin-bottom:0;">
+            <a href="mailto:bermet@runapex.co" class="btn btn--dark btn--lg">Contact us</a>
+          </div>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div class="scout-earn-list">
+            <div class="scout-earn-item">
+              <span class="scout-earn-item__label">Per person</span>
+              <span class="scout-earn-item__value">$300</span>
+            </div>
+            <div class="scout-earn-item">
+              <span class="scout-earn-item__label">Per company (10+ employees)</span>
+              <span class="scout-earn-item__value">$4,000</span>
+            </div>
+            <div class="scout-earn-item">
+              <span class="scout-earn-item__label">Paid when</span>
+              <span class="scout-earn-item__value">When your referral becomes a client</span>
+            </div>
+            <div class="scout-earn-item">
+              <span class="scout-earn-item__label">Referral cap</span>
+              <span class="scout-earn-item__value">No limit</span>
+            </div>
+            <div class="scout-earn-item">
+              <span class="scout-earn-item__label">Attribution window</span>
+              <span class="scout-earn-item__value">12 months</span>
+            </div>
+            <div class="scout-earn-item">
+              <span class="scout-earn-item__label">Payment</span>
+              <span class="scout-earn-item__value">Bank transfer or PayPal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
+      <div class="footer__brand">
+        <a href="/" class="nav__logo footer__logo">
+          <img src="images/apex-logo-white.png" alt="Apex" class="nav__logo-img">
+        </a>
+        <p class="footer__brand-text">Apex is not a law firm and does not provide legal advice. We provide visa preparation and consulting services. All information on this website is for informational purposes only.</p>
+        <span class="footer__meta-line">© 2026 Apex. All rights reserved.</span>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Navigation</span>
+        <a href="/">Product</a>
+        <a href="/consulting.html">Consulting</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/referrals.html">Referrals</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Contacts</span>
+        <a href="mailto:bermet@runapex.co">bermet@runapex.co</a>
+        <a href="https://www.linkedin.com/company/runapex/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/apex.talents/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-label">Legal</span>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer__illustration">
+      <img src="images/hero-manhattan-dots.svg?v=14" alt="" aria-hidden="true">
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
