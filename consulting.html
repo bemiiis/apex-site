@@ -17,7 +17,7 @@
   <link rel="apple-touch-icon" href="images/favicon-dark.png">
   <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=101">
+  <link rel="stylesheet" href="styles.css?v=145">
   <style>
     /* hero illustration keeps its true proportions (same principle as the footer
        illustration) instead of being stretched to fill the section box */
@@ -29,7 +29,7 @@
       .res-grid { grid-template-columns: repeat(2, 1fr) !important; }
       #articles .card-vdivider { display: none; }
     }
-    @media (max-width: 560px) {
+    @media (max-width: 640px) {
       .steps-track { grid-template-columns: 1fr !important; }
       .res-grid { grid-template-columns: 1fr !important; }
     }
@@ -46,7 +46,7 @@
       padding: 16px;
       background: var(--milk);
       border: 1px solid var(--gray-2);
-      border-radius: 12px;
+      border-radius: var(--radius-md);
     }
     #faq .faq__item:first-child { border-top: 1px solid var(--gray-2); }
     #faq .faq__q { padding: 0; }
@@ -62,7 +62,7 @@
       height: auto;
       background: var(--milk);
       border: 1px solid var(--gray-2);
-      border-radius: 20px;
+      border-radius: var(--radius-xl);
       overflow: hidden;
       text-decoration: none;
       color: inherit;
@@ -113,7 +113,7 @@
     /* FINAL CTA */
     .final-cta-card {
       background: var(--black);
-      border-radius: 20px;
+      border-radius: var(--radius-xl);
       padding: 64px 48px;
       display: flex;
       align-items: center;
@@ -792,6 +792,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=18"></script>
+  <script src="script.js?v=19"></script>
 </body>
 </html>

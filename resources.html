@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
-  <link rel="stylesheet" href="styles.css?v=140">
+  <link rel="stylesheet" href="styles.css?v=145">
   <style>
 
     /* ── PAGE TITLE ── */
@@ -21,7 +21,6 @@
       line-height: 1.15;
       margin-bottom: 56px;
     }
-    .res-page-title__muted { color: var(--gray-1); font-weight: 500; }
 
     /* ── FILTERS ── */
     .res-filters {
@@ -39,7 +38,7 @@
       cursor: pointer;
       background: var(--white);
       border: 1px solid var(--gray-2);
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       transition: color .15s, border-color .15s, background .15s;
       white-space: nowrap;
     }
@@ -61,7 +60,7 @@
       height: auto;
       background: var(--milk);
       border: 1px solid var(--gray-2);
-      border-radius: 20px;
+      border-radius: var(--radius-xl);
       overflow: hidden;
       text-decoration: none;
       color: inherit;

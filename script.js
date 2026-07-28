@@ -203,16 +203,6 @@ function toggleMenu(open) {
 menuBtn.addEventListener('click', () => toggleMenu(!menuOpen));
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
 
-// ─── SCROLL ANIMATIONS ──────────────────────────────────────
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
-
 // ─── PHASE BLOCK ANIMATIONS (index.html #features, 6 phases, loop while in view) ──
 (function () {
   const phaseBlocks = document.querySelectorAll('.phase-block');
@@ -459,17 +449,6 @@ const observer = new IntersectionObserver((entries) => {
   phaseBlocks.forEach(block => phaseObserver.observe(block));
 })();
 
-document.querySelectorAll('.card, .process-step, .criterion, .testimonial').forEach((el, i) => {
-  el.classList.add('fade-up');
-  el.style.transitionDelay = `${(i % 4) * 0.07}s`;
-  observer.observe(el);
-});
-
-document.querySelectorAll('.section__header, .hero__stats, .criteria__cta').forEach(el => {
-  el.classList.add('fade-up');
-  observer.observe(el);
-});
-
 // ─── FAQ ACCORDION ──────────────────────────────────────────
 document.querySelectorAll('.faq__q').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -516,8 +495,8 @@ document.querySelectorAll('.steps-scroll').forEach(el => {
 //     (now-hidden) vertical dividers with horizontal ones between stacked cards —
 //     same divider, rotated 90° to match the new stacking direction. ──
 (function () {
-  const GRID_SELECTOR = '.who-cards, .pricing-cards, .features-row, .platform-why, #articles .res-grid';
-  const CARD_SELECTOR = '.who-card, .pricing-card, .feature-card, .platform-why__item, .res-item';
+  const GRID_SELECTOR = '.who-cards, .pricing-cards, .features-row, .platform-why, #articles .res-grid, .team-grid, .principle-grid--four, .principle-grid--three';
+  const CARD_SELECTOR = '.who-card, .pricing-card, .feature-card, .platform-why__item, .res-item, .company-card';
 
   function updateStackedDividers() {
     document.querySelectorAll('.stacked-hdivider').forEach(el => el.remove());

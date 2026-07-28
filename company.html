@@ -18,7 +18,7 @@
   <link rel="icon" type="image/png" href="images/favicon-light.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" href="images/favicon-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="apple-touch-icon" href="images/favicon-dark.png">
-  <link rel="stylesheet" href="styles.css?v=140">
+  <link rel="stylesheet" href="styles.css?v=145">
   <style>
     /* ── HERO (page title, same pattern as resources.html) ── */
     .res-page-title {
@@ -44,7 +44,7 @@
       cursor: pointer;
       background: var(--white);
       border: 1px solid var(--gray-2);
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       transition: color .15s, border-color .15s, background .15s;
       white-space: nowrap;
     }
@@ -115,7 +115,7 @@
     @media (max-width: 900px) {
       .team-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 560px) {
+    @media (max-width: 640px) {
       .team-grid { grid-template-columns: 1fr; }
     }
 
@@ -135,7 +135,7 @@
     @media (max-width: 900px) {
       .principle-grid--four, .principle-grid--three { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 560px) {
+    @media (max-width: 640px) {
       .principle-grid--four, .principle-grid--three { grid-template-columns: 1fr; }
     }
 
@@ -213,7 +213,7 @@
     @media (max-width: 900px) {
       .position-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 560px) {
+    @media (max-width: 640px) {
       .position-grid { grid-template-columns: 1fr; }
     }
   </style>
