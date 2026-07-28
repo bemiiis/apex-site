@@ -437,6 +437,7 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
   padding-top: calc(var(--nav-h) + 100px);
   padding-bottom: 32px;
   height: 100vh;
+  height: 100svh;
   text-align: center;
   overflow: hidden;
 }
