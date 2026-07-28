@@ -473,7 +473,7 @@ document.querySelectorAll('.visa-tab').forEach(tab => {
   const bridgeEl = document.getElementById('heroBridge');
   if (!bridgeEl) return;
 
-  fetch((bridgeEl.dataset.src || 'images/hero-bridge-dots.svg') + '?v=16')
+  fetch((bridgeEl.dataset.src || 'images/hero-bridge-dots.svg') + '?v=18')
     .then(r => r.text())
     .then(svgText => { bridgeEl.innerHTML = svgText; });
 })();
