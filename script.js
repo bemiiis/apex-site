@@ -516,8 +516,8 @@ document.querySelectorAll('.steps-scroll').forEach(el => {
 //     (now-hidden) vertical dividers with horizontal ones between stacked cards —
 //     same divider, rotated 90° to match the new stacking direction. ──
 (function () {
-  const GRID_SELECTOR = '.who-cards, .pricing-cards, .features-row, .platform-why';
-  const CARD_SELECTOR = '.who-card, .pricing-card, .feature-card, .platform-why__item';
+  const GRID_SELECTOR = '.who-cards, .pricing-cards, .features-row, .platform-why, #articles .res-grid';
+  const CARD_SELECTOR = '.who-card, .pricing-card, .feature-card, .platform-why__item, .res-item';
 
   function updateStackedDividers() {
     document.querySelectorAll('.stacked-hdivider').forEach(el => el.remove());
