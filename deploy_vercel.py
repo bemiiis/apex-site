@@ -1,6 +1,6 @@
 import os, json, hashlib, mimetypes, urllib.request, urllib.error
 
-SITE_DIR     = "/Users/bema/Desktop/Apex Digital/apex-site"
+SITE_DIR     = "/Users/bema/Desktop/Projects/apex-site"
 PROJECT_NAME = "runapex"
 TOKEN        = open(os.path.expanduser("~/.vercel_token")).read().strip()
 
@@ -25,7 +25,8 @@ def api(method, path, body=None, headers=None):
         print("API error:", e.code, e.read().decode()); raise
 
 files = []
-for root, _, names in os.walk(SITE_DIR):
+for root, dirs, names in os.walk(SITE_DIR):
+    dirs[:] = [d for d in dirs if not d.startswith(".")]
     for name in names:
         if name.startswith("."): continue
         full = os.path.join(root, name)
