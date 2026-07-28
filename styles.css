@@ -101,6 +101,8 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
   transition: all .18s ease;
   white-space: nowrap;
   padding: 10px 20px;
+  height: 44px;
+  box-sizing: border-box;
 }
 
 
@@ -528,12 +530,12 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
 .hero__demo-input {
   flex: 1;
   min-width: 0;
-  height: 40px;
+  height: 44px;
   box-sizing: border-box;
   outline: none;
   background: var(--white);
   border: 1.5px solid var(--gray-2);
-  border-radius: 100px;
+  border-radius: 8px;
   padding: 0 16px;
   font-family: inherit;
   font-size: 14px;
@@ -543,9 +545,9 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
 .hero__demo-input::-webkit-input-placeholder { color: var(--gray-1); }
 .hero__demo-btn {
   flex-shrink: 0;
-  height: 40px;
+  height: 44px;
   box-sizing: border-box;
-  border-radius: 100px;
+  border-radius: 8px;
   white-space: nowrap;
 }
 
@@ -2021,6 +2023,7 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
   body::after    { right: 16px; }
   .section-frameline--left  { left:  14px !important; }
   .section-frameline--right { right: 14px !important; }
+  .divider-fill  { left: 16px; right: 16px; }
   .container     { padding-inline: 40px !important; }
   .steps-scroll  { margin-inline: -40px !important; padding-inline: 40px !important; }
   .section::before { left:  13px; }
@@ -2066,6 +2069,7 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
   body::after    { right: 12px; }
   .section-frameline--left  { left:  10px !important; }
   .section-frameline--right { right: 10px !important; }
+  .divider-fill  { left: 12px; right: 12px; }
   .section::before { left:   9px; }
   .section::after  { right:  9px; }
   .mid-cta::before { left:   9px; }

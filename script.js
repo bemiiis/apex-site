@@ -520,9 +520,9 @@ document.querySelectorAll('.steps-scroll').forEach(el => {
   const CARD_SELECTOR = '.who-card, .pricing-card, .feature-card';
 
   function updateStackedDividers() {
-    document.querySelectorAll(GRID_SELECTOR).forEach(grid => {
-      grid.querySelectorAll(':scope > .stacked-hdivider').forEach(el => el.remove());
+    document.querySelectorAll('.stacked-hdivider').forEach(el => el.remove());
 
+    document.querySelectorAll(GRID_SELECTOR).forEach(grid => {
       const cards = Array.from(grid.children).filter(el =>
         el.matches(CARD_SELECTOR) && getComputedStyle(el).display !== 'none'
       );
@@ -533,17 +533,22 @@ document.querySelectorAll('.steps-scroll').forEach(el => {
       const isSingleColumn = new Set(tops).size === cards.length;
       if (!isSingleColumn) return;
 
-      if (getComputedStyle(grid).position === 'static') grid.style.position = 'relative';
-      const gridTop = grid.getBoundingClientRect().top;
+      // anchor to the enclosing <section> (full page width), not the grid
+      // itself (clipped inside .container) — so left:0/right:0 reaches the
+      // true page frame lines, same as every other horizontal divider.
+      const section = grid.closest('section');
+      if (!section) return;
+      if (getComputedStyle(section).position === 'static') section.style.position = 'relative';
+      const sectionTop = section.getBoundingClientRect().top;
 
       for (let i = 0; i < cards.length - 1; i++) {
         const a = cards[i].getBoundingClientRect();
         const b = cards[i + 1].getBoundingClientRect();
-        const mid = (a.bottom + b.top) / 2 - gridTop;
+        const mid = (a.bottom + b.top) / 2 - sectionTop;
         const div = document.createElement('div');
         div.className = 'stacked-hdivider';
         div.style.cssText = `position:absolute;left:0;right:0;top:${mid}px;height:1px;background:var(--gray-2);pointer-events:none;z-index:2;`;
-        grid.appendChild(div);
+        section.appendChild(div);
       }
     });
   }
