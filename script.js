@@ -164,6 +164,17 @@ function setLanguage(lang) {
 
 setLanguage('en');
 
+// ─── STABLE HERO HEIGHT: lock 100vh to the viewport height measured once at
+//     load, so the hero doesn't resize (and the bottom-anchored illustration
+//     doesn't jump) as the browser's address bar shows/hides during scroll. ──
+(function () {
+  function setHeroVH() {
+    document.documentElement.style.setProperty('--hero-vh', window.innerHeight + 'px');
+  }
+  setHeroVH();
+  window.addEventListener('orientationchange', () => setTimeout(setHeroVH, 100));
+})();
+
 // ─── NAV SCROLL ─────────────────────────────────────────────
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {

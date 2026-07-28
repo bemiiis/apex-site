@@ -438,6 +438,7 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
   padding-bottom: 32px;
   height: 100vh;
   height: 100svh;
+  height: var(--hero-vh, 100svh);
   text-align: center;
   overflow: hidden;
 }
