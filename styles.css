@@ -547,8 +547,8 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
 
 @media (max-width: 560px) {
   .hero__demo-form { flex-direction: column; }
-  .hero__demo-input { width: 100%; }
-  .hero__demo-btn { width: 100%; }
+  .hero__demo-input { flex: none; width: 100%; }
+  .hero__demo-btn { flex: none; width: 100%; }
 }
 
 .hero__stats {
@@ -2015,6 +2015,8 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
   main::after    { right: 16px; }
   body::before   { left:  16px; }
   body::after    { right: 16px; }
+  .section-frameline--left  { left:  14px !important; }
+  .section-frameline--right { right: 14px !important; }
   .container     { padding-inline: 40px !important; }
   .steps-scroll  { margin-inline: -40px !important; padding-inline: 40px !important; }
   .section::before { left:  13px; }
@@ -2053,10 +2055,13 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
 
   .container     { padding-inline: 24px !important; }
   .steps-scroll  { margin-inline: -24px !important; padding-inline: 24px !important; }
+  .hero__title-br { display: none; }
   main::before   { left:  12px; }
   main::after    { right: 12px; }
   body::before   { left:  12px; }
   body::after    { right: 12px; }
+  .section-frameline--left  { left:  10px !important; }
+  .section-frameline--right { right: 10px !important; }
   .section::before { left:   9px; }
   .section::after  { right:  9px; }
   .mid-cta::before { left:   9px; }
