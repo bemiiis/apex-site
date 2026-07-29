@@ -1239,7 +1239,7 @@ body::after  { right: max(32px, calc(50% - var(--container) / 2)); background: v
 /* ── Mobile 640px ── */
 @media (max-width: 640px) {
   .section       { padding-top: 48px;  padding-bottom: 20px; }
-  .hero          { padding-top: 180px; padding-bottom: 20px; }
+  .hero          { padding-top: 160px; padding-bottom: 20px; }
   #founder-quote { padding-top: 48px;  padding-bottom: 48px; }
 
   .container     { padding-inline: 24px !important; }
